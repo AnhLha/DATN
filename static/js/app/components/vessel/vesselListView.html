@@ -1,0 +1,73 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+      Vessel Information
+      <!-- <small>Thông số</small> -->
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">Vessel</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+<!-- Main content -->
+<section class="content">
+<!-- Default box -->
+<div class="box">
+    <div class="box-header with-border">
+    <h3 class="box-title">Vessel list</h3>
+    </div>
+    <div class="box-body">
+    <di class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="keyword" placeholder="Zid | Name | MAC | IP">
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="search()">Search</button>
+                </span>
+            </div><!-- /input-group -->
+        </div>
+        <div>
+            <button class="btn btn-primary pull-right" type="button" ui-sref="vessel_add">Add</button>
+        </div>
+    </di>
+    <div class="row">
+        <div class="col-md-12">
+        <table class="table table-bordered">
+            <tr>
+            <th style="width: 15%">IMO</th>
+            <th style="width: 15%">Name</th>
+            <th style="width: 15%">Buil</th>
+            <th style="width: 10%">GT</th>
+            <th style="width: 15%">DWT</th>
+            <th style="width: 10%">Size</th>
+            <th style="width: 20%">Activity</th>
+            </tr>
+            <tr ng-repeat="item in vessels">
+            <td>{{item.imo}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.built}}</td>
+            <td>{{item.gt}}</td>
+            <td>{{item.dwt}}</td>
+            <td>{{item.length}} x {{item.width}} m</td>
+            <td> 
+                <button class="btn  btn-sm btn-primary" ui-sref="vessel_edit({imo:item.imo})"><i class="fa fa-pencil" title="Change"></i></button>
+                <button class="btn  btn-sm btn-danger" ng-click="deleteVessel(item.imo)"><i class="fa fa-trash" title="Delete"></i></button>
+                <button class="btn  btn-sm btn-success" style="width:30px" ui-sref="vessel_detail({imo:item.imo})"><i class="fa fa-info" title="Detail"></i></button>
+                <button class="btn  btn-sm btn-success" style="width:30px" ui-sref="journey({imo:item.imo})"><i class="fa fa-stumbleupon" title="Journey"></i></button>
+            </td>
+            </tr>
+            <tfoot>
+            <tr>
+                <td colspan="5">Toltal vessels: {{totalCount}}</td>
+            </tdr>
+            </tfoot>
+        </table>
+        </div>
+    </div>
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+    </div><!-- /.box-footer-->
+</div><!-- /.box -->
+</section><!-- /.content -->

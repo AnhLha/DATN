@@ -1,0 +1,76 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+      Port Information
+      <!-- <small>Thông số</small> -->
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">Port</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+<!-- Main content -->
+<section class="content">
+<!-- Default box -->
+<div class="box">
+    <div class="box-header with-border">
+    <h3 class="box-title">Port list</h3>
+    <div class="box-tools pull-right">
+        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div>
+    </div>
+    <div class="box-body">
+    <di class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="keyword" placeholder="Zid | Name | MAC | IP">
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="search()">Search</button>
+                </span>
+            </div><!-- /input-group -->
+        </div>
+        <div>
+            <button class="btn btn-primary pull-right" type="button" ui-sref="port_add">Add</button>
+        </div>
+    </di>
+    <div class="row">
+        <div class="col-md-12">
+        <table class="table table-bordered">
+            <tr>
+            <th style="width: 5%">ID</th>
+            <th style="width: 15%">Name</th>
+            <th style="width: 7%">Country</th>
+            <th style="width: 10%">Location</th>
+            <th style="width: 10%">Size</th>
+            <th style="width: 10%">Type</th>     
+            <th style="width: 20%">Action</th>
+            </tr>
+            <tr ng-repeat="item in ports">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td><img src="{{item.pictureFlag}}"></td>
+            <td>{{item.lat}}/{{item.lng}}</td>
+            <td>{{item.size}}</td>
+            <td>{{item.type}}</td>
+            <td>
+                <button class="btn btn-sm btn-primary" ui-sref="port_edit({id:item.id})"><i class="fa fa-pencil" title="Change"></i></button>
+                <button class="btn  btn-sm btn-danger" ng-click="deletePort(item.id)"><i class="fa fa-trash" title="Delete"></i></button>
+                <button class="btn  btn-sm btn-success" style="width:30px" ui-sref="port_detail({id:item.id})"><i class="fa fa-info" title="Detail"></i></button>
+            </td>
+            </tr>
+            <tfoot>
+            <tr>
+                <td colspan="5">Toltal ports: {{totalCount}}</td>
+            </tdr>
+            </tfoot>
+        </table>
+        </div>
+    </div>
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+    </div><!-- /.box-footer-->
+</div><!-- /.box -->
+</section><!-- /.content -->

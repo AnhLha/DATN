@@ -1,0 +1,8 @@
+Cargo Vessels		green		0
+Tankers			red		1
+Passenger Vessels	blue		2
+High Speed Craft	yellow		3
+Tugs & Special Craft	light-blue	4
+Fishing			brown		5
+Pleasure Craft		purple		6
+Unspecified Ships	gray		7

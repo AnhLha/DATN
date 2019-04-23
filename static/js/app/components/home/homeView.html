@@ -1,0 +1,117 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+        <h1>
+          Dashboard
+          <small>Static</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li class="active">Dashboard</li>
+        </ol>
+      </section>
+  
+      <!-- Main content -->
+<!-- Main content -->
+<section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>OK</h3>
+
+              <p>Sniffer</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-cog"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{numbDevices}}</h3>
+
+              <p>Devices</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-mobile"></i>
+            </div>
+            <a ui-sref="scan" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+                <div class="inner">
+                <h3>{{numbTargets}}</h3>
+
+                <p>Targets</p>
+                </div>
+                <div class="icon">
+                <i class="fa fa-users"></i>
+                </div>
+                <a ui-sref="targets" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>    
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>{{numbProfiles}}</h3>
+
+              <p>Z profiles</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-user-secret"></i>
+            </div>
+            <a ui-sref="profiles" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        
+    </div>
+
+    <!-- Current target-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Current targets</h3>
+
+                    <div class="box-tools pull-right">
+                    <span class="label label-danger">{{totalCount}} Targets</span>
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <ul class="users-list clearfix" ng-repeat="target in targets">
+                    <li>
+                        <img src="{{target.avatar}}" alt="User Image">
+                        <a class="users-list-name" href="#">Alexander Pierce</a>
+                        <span class="users-list-date">Today</span>
+                    </li>
+                   
+                    </ul>
+                    <!-- /.users-list -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer text-center">
+                    <a ui-sref="targets" class="uppercase">View All Targets</a>
+                </div>
+                <!-- /.box-footer -->
+            </div>  
+        </div>  
+    </div>
+</section><!-- /.content -->

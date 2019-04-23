@@ -1,0 +1,90 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Port Information
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="port">Port</a></li>
+        <li class="active">Detail</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">{{port.name}}</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <!-- form start -->
+                <div class="col-md-6">
+                    <!-- header-left -->
+                    <div class="header-left">
+                        <div class="row">
+                            <div class="col-md-2 img-flag">
+
+                                <img id="picCountry" src="{{picCountry}}" />
+
+                            </div>
+                            <div class="col-md-9 title-vessel">
+                                <h3>
+                                    <b>{{port.name}}</b>
+                                </h3>
+                                <p>{{port.type}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- img-vessel -->
+                    <div class="img-port">
+                        <img id="picPort" src="{{picPort}}" />
+                    </div>
+                    <!-- info-vessel -->
+                </div>
+                <div class="col-md-6">
+                    <!-- info-vessel-from-ais -->
+                    <div class="info-vessel">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><b>Locode</b></td>
+                                    <td>{{port.loCode}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Location</b></td>
+                                    <td>{{port.lat.toFixed(4)}}/{{port.lng.toFixed(4)}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Dry Dock</b></td>
+                                    <td>{{port.dryDock}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Shelter</b></td>
+                                    <td>{{port.shelter}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Ship Repairs</b></td>
+                                    <td>{{port.shipRepairs}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Size</b></td>
+                                    <td> {{port.size}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Size's Vessel</b></td>
+                                    <td>{{port.vesselSize}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.box body -->
+        <div class="box-footer">
+            <button type="button" class="btn btn-success pull-right" ui-sref="port">Back</button>
+        </div><!-- /.box-footer-->
+    </div><!-- /.box -->
+
+</section><!-- /.content -->

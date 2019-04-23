@@ -1,0 +1,114 @@
+<section class="content-header">
+    <h1>
+        Add Vessel
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="vessel">Vessel</a></li>
+        <li class="active">Add</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Complete Infomation</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmaddVessel" role="form" ng-submit="addVessel()">
+            <div class="box-body">
+                <div class="col-md-4">
+                    <div class="form-group" style="height: 110px">
+                        <label class="col-sm-2 control-label">Picture</label>
+                        <div class="col-sm-9">
+                            <img src="{{picVessel}}" style="height:100px" ng-click="uploadPicture()"></img>
+                            <input type="file" style="width:95%" ng-file-select="onFileSelect($files)"
+                                ng-model="vesselInfoData.flagCode">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="height: 25px">
+                        <label class="col-sm-2 control-label">Owner</label>
+                        <div class="col-sm-9">
+                            <p style="margin-top:7px" ng-if="vesselInfoData.accountId == 1">Owner Ship</p>
+                            <p style="margin-top:7px" ng-if="vesselInfoData.accountId == 2">Viewer</p>
+                            <p style="margin-top:7px" ng-if="vesselInfoData.accountId == 0">Admin</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="height: 25px">
+                        <label class="col-sm-2 control-label">IMO </label>
+                        <div class="col-sm-9">
+                            <p style="margin-top:7px"> {{imoVessel}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group" style="height: 25px">
+                        <label class="col-sm-2 control-label">MSSI </label>
+                        <div class="col-sm-9">
+                            <p style="margin-top:7px"> {{vesselInfoData.mssi}}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="height: 25px">
+                        <label class="col-sm-2 control-label">Callsign</label>
+                        <div class="col-sm-9">
+                            <p style="margin-top:7px">{{vesselInfoData.callsign}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Name</label>
+                        <input type="text" class="form-control" style="width: 90%" name="name" required
+                            ng-model="vesselInfoData.name">
+                        <span ng-show="frmaddVessel.name.$error.maxlength" class="has-error">Name lenght is below
+                            256 characters</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Type</label>
+                        <input type="text" class="form-control" style="width: 90%" name="account" required
+                            ng-model="vesselInfoData.type">
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="control-label">GT</label>
+                        <input type="text" class="form-control" style="width: 90%" name="account" required
+                            ng-model="vesselInfoData.GT">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">DWT</label>
+                        <input type="text" class="form-control" style="width: 90%" name="account" required
+                            ng-model="vesselInfoData.DWT">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Lenght</label>
+                        <input type="text" class="form-control" style="width: 90%" name="account" required
+                            ng-model="vesselInfoData.length">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Width</label>
+                        <input type="text" class="form-control" style="width: 90%" name="account" required
+                            ng-model="vesselInfoData.width">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Draught</label>
+                        <input type="text" class="form-control" style="width: 90%" name="account" required
+                            ng-model="vesselInfoData.draught">
+                    </div>
+                </div>
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="vessel" class="btn btn-default">Cancel</button>
+                <button type="submit" ng-disabled="frmaddVessel.$invalid"
+                    class="btn btn-success pull-right" ng-click ="addVessel()">Save</button>
+            </div><!-- /.box-footer -->.
+        </form>
+    </div><!-- /.box -->
+</section><!-- /.content -->

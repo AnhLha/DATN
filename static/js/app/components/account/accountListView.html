@@ -1,0 +1,75 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+      Account Information
+      <!-- <small>Thông số</small> -->
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">Account</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+<!-- Main content -->
+<section class="content">
+<!-- Default box -->
+<div class="box">
+    <div class="box-header with-border">
+    <h3 class="box-title">Account list</h3>
+    <div class="box-tools pull-right">
+        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div>
+    </div>
+    <div class="box-body">
+    <di class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="keyword" placeholder="Zid | Name | MAC | IP">
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="search()">Search</button>
+                </span>
+            </div><!-- /input-group -->
+        </div>
+        <div>
+            <button class="btn btn-primary pull-right" type="button" ui-sref="account_add">Add</button>
+        </div>
+    </di>
+    <div class="row">
+        <div class="col-md-12">
+        <table class="table table-bordered">
+            <tr>
+            <th style="width: 5%">ID</th>
+            <th style="width: 15%">Email</th>
+            <th style="width: 15%">Username</th>
+            <th style="width: 10%">Password</th>
+            <th style="width: 15%">Type</th>
+            <th style="width: 20%">Action</th>
+            </tr>
+            <tr ng-repeat="item in accounts">
+            <td>{{item.id}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.name}}</td>
+            <td type = "passwprd">{{item.password}}</td>
+            <td ng-if="item.type == 1">Owner Ship</td> 
+            <td ng-if="item.type == 2">Viewer</td> 
+            <td ng-if="item.type == 0">Admin</td> 
+            <td>
+                <button class="btn btn-sm btn-primary" ui-sref="account_edit({id:item.id})"><i class="fa fa-pencil" title="Change"></i></button>
+                <button class="btn  btn-sm btn-danger" ng-click="deleteAcccount(item.id)"><i class="fa fa-trash" title="Delete"></i></button>
+            </td>
+            </tr>
+            <tfoot>
+            <tr>
+                <td colspan="5">Toltal ports: {{totalCount}}</td>
+            </tdr>
+            </tfoot>
+        </table>
+        </div>
+    </div>
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+    </div><!-- /.box-footer-->
+</div><!-- /.box -->
+</section><!-- /.content -->

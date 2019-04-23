@@ -1,0 +1,106 @@
+.header-left{
+	background-color: #209e91;
+  max-height: 50px;
+  border-radius: 5px;
+  }
+.img-flag{
+padding-right: 3px;
+float:left;
+/* width:25%; */
+height:100%;
+}
+.img-flag img{
+/* width: 90%; */
+height:45px;
+object-fit: cover;
+border-radius: 5px;
+}
+.info-vessel{
+  margin-top: 10px;
+}
+.title-vessel h3{
+margin-top: 0px;
+margin-bottom: 5px;
+}
+.title-vessel b{
+color: #fff;
+}
+.title-vessel p{
+color: #fff;
+}
+.img-vessel{
+height:200px;
+}
+.img-vessel img{
+width: 100%;
+height: 85%;
+border-radius: 5px;
+}
+.img-port{
+  height: 200px;
+}
+.img-port img{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+.modal .modal-dialog{
+vertical-align: middle;
+}
+.modal .modal-dialog .modal-body p .title-vessel p {
+color: #fff;
+}
+.header-ais-data{
+background-color: #209e91;
+height: 50px;
+border-radius: 5px;
+}
+.header-ais-data h3{
+  text-align: center;
+}
+.header-ais-data b{
+color: #fff;
+vertical-align: middle;
+}
+.icon-screen{
+  height: 10px;
+  width: 10px;
+}
+.btn-screen {
+  background-color: #fff;
+  height: 10px;
+  width: 10px;
+}
+
+.btnScreen{
+position: relative;
+display: inline-block;
+cursor: pointer;
+}
+.btnScreen .mypopup{
+visibility: hidden;
+width: 50px;
+background-color: rgb(248, 209, 209);
+color: rgb(17, 3, 3);
+text-align: center;
+border-radius: 5px;
+padding: 8px 0;
+position: absolute;
+z-index: 1;
+bottom: 125%;
+left: 50%;
+margin-left: -80px;
+}
+.btnScreen .show{
+  visibility: visible;
+}
+
+#leaflet-map{
+  height: 400px;
+}
+.logo {
+  background-color:#209e91;
+}
+.navbar navbar-static-top{
+  background-color:#209e91;
+}

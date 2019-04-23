@@ -1,0 +1,127 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+        <h1>
+            Vessel Information
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a ui-sref="vessel">Vessel</a></li>
+            <li class="active">Detail</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Horizontal Form -->
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{vesselInfoData.name}}</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <!-- form start -->
+                    <div class="col-md-6">
+                        <!-- header-left -->
+                        <div class="header-left">
+                            <div class="row">
+                                <div class="col-md-2 img-flag">
+    
+                                    <img id="picCountry" src="{{picCountry}}" />
+    
+                                </div>
+                                <div class="col-md-9 title-vessel">
+                                    <h3>
+                                        <b>{{vesselInfoData.name}}</b>
+                                    </h3>
+                                    <p>{{vesselInfoData.type}}</p>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <!-- img-vessel -->
+                        <div class="img-vessel">
+                            <img id="picVessel" src="{{picVessel}}" />
+                        </div>
+                        <!-- info-vessel -->
+                        <div class="info-vessel">
+                            <table class="table">
+                                <thead>
+                                    <th><b>IMO</b></th>
+                                    <th><b>Callsign</b></th>
+                                    <th><b>Built</b></th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{imoVessel}}</td>
+                                        <td>{{vesselInfoData.callsign}}</td>
+                                        <td>{{vesselInfoData.built}}</td>
+                                    </tr>
+                                </tbody>
+                                <thead>
+                                    <th><b>GT</b></th>
+                                    <th><b>DWT</b></th>
+                                    <th><b>Size</b></th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td> {{vesselInfoData.GT}}</td>
+                                        <td>{{vesselInfoData.DWT}}</td>
+                                        <td>{{vesselInfoData.length}} x {{vesselInfoData.width}} (m)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- header-left -->
+                        <div class="header-ais-data">
+                            <h3 style="margin-top:0px; padding-top:10px;">
+                                <b>AIS DATA</b>
+                            </h3>
+                        </div>
+    
+                        <!-- info-vessel-from-ais -->
+                        <div class="info-vessel">
+                            <table class="table">
+    
+                                <tbody>
+                                    <tr>
+                                        <td><b>MSSI</b></td>
+                                        <td>{{vesselInfoData.mssi}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Course</b></td>
+                                        <td>{{vesselInfoData.course}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Speed</b></td>
+                                        <td>{{vesselInfoData.speed}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Draught</b></td>
+                                        <td> {{vesselInfoData.draught}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Cur Draught</b></td>
+                                        <td>{{vesselInfoData.currentDraught}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Location</b></td>
+                                        <td>{{vesselInfoData.lat.toFixed(4)}}/{{vesselInfoData.lng.toFixed(4)}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Last Report Time</b></td>
+                                        <td> {{vesselInfoData.lastReportTime}}</td>
+                                    </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.box body -->
+            <div class="box-footer">
+                <button type="button" class="btn btn-success pull-right" ui-sref="mymap">Back</button>
+            </div><!-- /.box-footer-->
+        </div><!-- /.box -->
+    
+    </section><!-- /.content -->

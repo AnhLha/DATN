@@ -1,0 +1,83 @@
+<section class="content-header">
+    <h1>
+        Journey
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="vessel">Vessel</a></li>
+        <li class="active">Journey</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">IMO: {{imo}}</h3>
+        </div>
+        <form class="form-horizontal">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div id="leaflet-map">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Select journey</label>
+                            <select class="form-control" style="width: 95%" value="Select journey"
+                                data-style="btn-primary" data-container="body" selectpicker>
+                                <option ng-repeat="journey in lsJourney" ng-click="select(journey.idJourney)">From
+                                    {{journey.from}} to {{journey.to}}</option>
+                            </select>
+                        </div>
+                        <div class="info-vessel">
+                            <table class="table">
+                                <thead>
+                                    <th><b>From</b></th>
+                                    <th><b>Eta</b></th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{selectedJourney.from}}</td>
+                                        <td>{{selectedJourney.eta}}</td>
+                                    </tr>
+                                </tbody>
+                                <thead>
+                                    <th><b>To</b></th>
+                                    <th><b>Etd</b></th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{selectedJourney.to}}</td>
+                                        <td>{{selectedJourney.etd}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-left">
+                            <p ng-if="finished==false">
+                                Your ship is on the journey from {{curFrom}} to {{curTo}}<br>
+                                Needs to complete the itinerary before being added new
+                            </p>
+                            <p ng-if="finished==true">
+                                Completed the journey<br>
+                                Your ship can add new itineraries
+                            </p>
+                            <button type="button" class="btn btn-primary" title="Add Journey"
+                                ui-sref="journey_add({imo:imo})" ng-if="finished==true">
+                                Add Journey
+                            </button>
+                            <button type="button" class="btn btn-primary pull-right" title="Back"
+                                ui-sref="vessel">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+
+<!-- <select ngModel (ngModelChange)="mySelectHandler($event)">
+      <option *ngFor="let value of options" [ngValue]="value">{{value.text}}</option>
+  </select> -->

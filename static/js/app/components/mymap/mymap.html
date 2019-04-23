@@ -1,0 +1,104 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Map
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Map</li>
+  </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+  <!-- Horizontal Form -->
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Map</h3>
+    </div><!-- /.box-header -->
+    <!-- form start -->
+    <form class="form-horizontal">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-9">
+            <div id="leaflet-map">
+            </div>
+          </div>
+          <div class="col-md-3" ng-if="vessel.name != ''">
+            <!-- header-left -->
+            <div class="header-left">
+              <div class="img-flag">
+                <img id="picCountry" src="{{picCountry}}" />
+              </div>
+              <div class="title-vessel">
+                <h3>
+                  <b>{{vessel.name}}</b>
+                </h3>
+                <p>{{vessel.type}}</p>
+              </div>
+            </div>
+            <!-- img-vessel -->
+            <div class="img-vessel" style="height:100px">
+              <img id="picVessel" src="{{picVessel}}" style="height:100px" />
+            </div>
+            <!-- info-vessel -->
+            <div class="info-vessel">
+              <table class="table">
+                <thead>
+                  <th><b>IMO</b></th>
+                  <th><b>Callsign</b></th>
+                  <th><b>Built</b></th>
+                </thead>
+                <tbody>
+                  <tr class="ng-scope">
+                    <td>{{vessel.imo}}</td>
+                    <td>{{vessel.callsign}}</td>
+                    <td>{{vessel.built}}</td>
+                  </tr>
+                </tbody>
+                <thead>
+                  <th><b>GT</b></th>
+                  <th><b>DWT</b></th>
+                  <th><b>Size</b></th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td> {{vessel.gt}}</td>
+                    <td>{{vessel.dwt}}</td>
+                    <td>{{vessel.length}} x {{vessel.width}} (m)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btn btn-primary" ng-click="trackhistoryFunc()">
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="29" height="15.934" viewBox="47.053 9.042 29 15.934">
+                            <path fill="#777"
+                              d="M76.053 18.367l-2.442 5.557c-.305.645-.915 1.052-1.58 1.052H57.629c-.266 0-.437-.304-.318-.564l.005-.013c.197-.423.081-.937-.272-1.213l-.019-.016c-.817-.639-1.302-1.668-1.302-2.768v-1.261h12.818v-.007c0-.423.317-.77.707-.77h6.805v.003zm-8.225-4.661h-2.492c-.197 0-.357.174-.357.389v4.272c0 .215.16.392.357.392h2.492c.196 0 .357-.177.357-.392v-4.272c.001-.216-.161-.389-.357-.389zm4.273 1.555h-2.847c-.196 0-.356.174-.356.389v1.556c0 .214.16.39.356.39h2.847c.2 0 .36-.176.36-.39V15.65c0-.217-.16-.389-.36-.389zm-11.038 3.498h2.848c.194 0 .355-.177.355-.392v-3.106c0-.215-.161-.39-.355-.39h-2.848c-.196 0-.356.175-.356.39v3.106c0 .218.16.392.356.392zm-.181-5.83l-.886.777v5.053h-3.562v-5.053h-1.067v-.777h2.493v-1.127h-.92v-.454h.92V9.042h.357v2.307h.919v.454h-.919v1.127h2.665zm-1.529 3.197h-1.16v1.16h1.16v-1.16zm0-1.861h-1.16v1.161h1.16v-1.161zM47.731 24.976a.668.668 0 0 1-.481-.201.69.69 0 0 1 0-.964.704.704 0 0 1 .96 0c.125.13.2.303.2.483a.687.687 0 0 1-.679.682zM56.045 24.976a.67.67 0 0 1-.482-.202.686.686 0 0 1 0-.965.708.708 0 0 1 .96 0 .71.71 0 0 1 .2.485.688.688 0 0 1-.678.682zM54.009 24.976a.67.67 0 0 1-.482-.202.685.685 0 0 1 0-.959.703.703 0 0 1 .961-.006.71.71 0 0 1 .2.485.688.688 0 0 1-.679.682zM51.973 24.976a.667.667 0 0 1-.482-.202.686.686 0 0 1 0-.965.708.708 0 0 1 .96 0 .683.683 0 0 1-.478 1.167zM49.937 24.976a.68.68 0 0 1-.678-.682c0-.181.071-.354.196-.485a.71.71 0 0 1 .961 0 .678.678 0 0 1 0 .965.673.673 0 0 1-.479.202z">
+                            </path>
+                          </svg> -->
+                <span>Track</span>
+              </button>
+              <button type="button" class="btn btn-primary" ng-click="trackJourneyFunc()">
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="8 8 16 16">
+                            <path fill="#777"
+                              d="M16 8a8 8 0 0 1 8 8 8 8 0 1 1-16 0 8 8 0 0 1 8-8m1.5 7.5h-3V21h3v-5.5zM16 11a1.5 1.5 0 1 0-.001 2.999A1.5 1.5 0 0 0 16 11">
+                            </path>
+                          </svg> -->
+                <span>Journey</span>
+              </button>
+              <button type="button" class="btn btn-success" ui-sref="mymap_vessel_detail({imo:vessel.imo})">
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="8 8 16 16">
+                              <path fill="#777"
+                                d="M16 8a8 8 0 0 1 8 8 8 8 0 1 1-16 0 8 8 0 0 1 8-8m1.5 7.5h-3V21h3v-5.5zM16 11a1.5 1.5 0 1 0-.001 2.999A1.5 1.5 0 0 0 16 11">
+                              </path>
+                            </svg> -->
+                <span>Detail</span>
+              </button>
+            </div>
+          </div>
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+        </div><!-- /.box-footer -->
+    </form>
+  </div><!-- /.box -->
+</section><!-- /.content -->

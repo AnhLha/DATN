@@ -1,0 +1,62 @@
+<section class="content-header">
+    <h1>
+        Add Journey
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="vessel"></i> Vessel</a></li>
+        <li><a ui-sref="journey({imo:imo})"></i> Journey</a></li>
+        <li class="active">Add journey</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Create Journey</h3>
+        </div>
+
+        <form class="form-horizontal">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div id="leaflet-map">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel with-scroll animated zoomIn" zoom-in="">
+                            <div class="panel-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="input01">From</label>
+                                        <input type="text" class="form-control" id="input01" placeholder="From">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="input01">To</label>
+                                        <input type="text" class="form-control" id="input02" placeholder="To">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date range:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <!-- <input type="text" class="form-control pull-right" id="reservation"> -->
+                                            <input type="text" id="config-demo" class="form-control">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                </form>
+                                <div>
+                                    <button type="button" class="btn btn-primary pull-left" ui-sref="journey({imo:imo})"
+                                        title="Cancel">Cancel</button>
+                                    <button type="button" class="btn btn-primary pull-right" ng-click="Accept()"
+                                        title="Save">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
