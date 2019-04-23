@@ -27,87 +27,72 @@
                                 ng-model="vesselInfoData.flagCode">
                         </div>
                     </div>
-
-                    <div class="form-group" style="height: 25px">
-                        <label class="col-sm-2 control-label">Owner</label>
-                        <div class="col-sm-9">
-                            <p style="margin-top:7px" ng-if="vesselInfoData.accountId == 1">Owner Ship</p>
-                            <p style="margin-top:7px" ng-if="vesselInfoData.accountId == 2">Viewer</p>
-                            <p style="margin-top:7px" ng-if="vesselInfoData.accountId == 0">Admin</p>
-                        </div>
-                    </div>
-
-                    <div class="form-group" style="height: 25px">
+                    <div class="form-group" style="height: 55px">
                         <label class="col-sm-2 control-label">IMO </label>
-                        <div class="col-sm-9">
-                            <p style="margin-top:7px"> {{imoVessel}}</p>
-                        </div>
+                        <input type="text" class="form-control" style="width: 90%" name="imo" required ng-model="imo">
                     </div>
-                    <div class="form-group" style="height: 25px">
-                        <label class="col-sm-2 control-label">MSSI </label>
-                        <div class="col-sm-9">
-                            <p style="margin-top:7px"> {{vesselInfoData.mssi}}</p>
-                        </div>
+                    <div class="form-group" style="height: 55px">
+                        <label class=" col-sm-2 control-label">MSSI </label>
+                        <input type="text" class="form-control" style="width: 90%" name="mssi" required ng-model="mssi">
                     </div>
-
-                    <div class="form-group" style="height: 25px">
-                        <label class="col-sm-2 control-label">Callsign</label>
-                        <div class="col-sm-9">
-                            <p style="margin-top:7px">{{vesselInfoData.callsign}}</p>
-                        </div>
+                    <div class="form-group" style="height: 55px">
+                        <label class=" col-sm-2 control-label">Callsign</label>
+                        <input type="text" class="form-control" style="width: 90%" name="callsign" required
+                            ng-model="callsign">
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-group">
+                    <div class="form-group" style="height: 73px">
                         <label class="control-label">Name</label>
-                        <input type="text" class="form-control" style="width: 90%" name="name" required
-                            ng-model="vesselInfoData.name">
+                        <input type="text" class="form-control" style="width: 90%" name="name" required ng-model="name">
                         <span ng-show="frmaddVessel.name.$error.maxlength" class="has-error">Name lenght is below
                             256 characters</span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="height: 73px">
                         <label class="control-label">Type</label>
-                        <input type="text" class="form-control" style="width: 90%" name="account" required
-                            ng-model="vesselInfoData.type">
+                        <input type="text" class="form-control" style="width: 90%" name="type" required ng-model="type">
                     </div>
-
-
-
-                    <div class="form-group">
+                    <div class="form-group" style="height: 73px">
                         <label class="control-label">GT</label>
-                        <input type="text" class="form-control" style="width: 90%" name="account" required
-                            ng-model="vesselInfoData.GT">
+                        <input type="text" class="form-control" style="width: 90%" name="gt" required ng-model="GT">
+                    </div>
+                    <div class="form-group" style="height: 73px">
+                        <label class="control-label">Owner</label>
+                        <select class="form-control" style="width: 90%; border-radius: 5px;" value="Select Owner"
+                            data-style="btn-primary" data-container="body" ng-model="account" selectpicker>
+                            <option ng-repeat="acc in Accounts" ng-click="select(acc.id)">
+                                {{acc.email}}
+                            </option>
+                        </select>
                     </div>
                 </div>
-
                 <div class="col-md-4">
-                    <div class="form-group">
+                    <div class="form-group" style="height: 73px">
                         <label class="control-label">DWT</label>
-                        <input type="text" class="form-control" style="width: 90%" name="account" required
-                            ng-model="vesselInfoData.DWT">
+                        <input type="text" class="form-control" style="width: 90%" name="dwt" required ng-model="dwt">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="height: 73px">
                         <label class="control-label">Lenght</label>
-                        <input type="text" class="form-control" style="width: 90%" name="account" required
-                            ng-model="vesselInfoData.length">
+                        <input type="text" class="form-control" style="width: 90%" name="lenght" required
+                            ng-model="length">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="height: 73px">
                         <label class="control-label">Width</label>
-                        <input type="text" class="form-control" style="width: 90%" name="account" required
-                            ng-model="vesselInfoData.width">
+                        <input type="text" class="form-control" style="width: 90%" name="width" required
+                            ng-model="width">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="height: 73px">
                         <label class="control-label">Draught</label>
-                        <input type="text" class="form-control" style="width: 90%" name="account" required
-                            ng-model="vesselInfoData.draught">
+                        <input type="text" class="form-control" style="width: 90%" name="draught" required
+                            ng-model="draught">
                     </div>
                 </div>
             </div><!-- /.box-body -->
             <div class="box-footer">
                 <button ui-sref="vessel" class="btn btn-default">Cancel</button>
-                <button type="submit" ng-disabled="frmaddVessel.$invalid"
-                    class="btn btn-success pull-right" ng-click ="addVessel()">Save</button>
+                <button type="submit" ng-disabled="frmaddVessel.$invalid" class="btn btn-success pull-right"
+                    ng-click="addVessel()">Save</button>
             </div><!-- /.box-footer -->.
         </form>
     </div><!-- /.box -->

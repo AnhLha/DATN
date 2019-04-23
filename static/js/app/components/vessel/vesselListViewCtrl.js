@@ -15,6 +15,7 @@
         function getVessels() {
             itemRef.ref('vessel/').on('value', function (snapshot) {
                 var vesselData = snapshot.val();
+                console.log(vesselData);
                 var listVessel = [];
                 angular.forEach(vesselData, function (value, key) {
                     var data = {
@@ -44,7 +45,7 @@
                     $scope.totalCount++;
                 })
                 $scope.vessels = listVessel;
-                console.log($scope.vessels);
+                
                 if(!$scope.$$phase)
                     $scope.$apply();
                 
