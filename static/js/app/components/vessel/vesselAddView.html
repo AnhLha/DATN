@@ -50,6 +50,15 @@
                             256 characters</span>
                     </div>
                     <div class="form-group" style="height: 73px">
+                        <label class="control-label">Country</label>
+                        <select class="form-control" style="width: 90%; border-radius: 5px;" value="Select Country"
+                            data-style="btn-primary" data-container="body" ng-model="country" selectpicker>
+                            <option ng-repeat="country in countries" ng-click="select(country.id)">
+                               <img src="">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="height: 73px">
                         <label class="control-label">Type</label>
                         <input type="text" class="form-control" style="width: 90%" name="type" required ng-model="type">
                     </div>

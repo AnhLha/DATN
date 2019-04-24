@@ -24,10 +24,25 @@
                 $scope.$apply()
         });
 
-        function addVessel() {
-            
+        $scope.idAcc;
+        $scope.select = function (idAcc) {
+            $scope.lsJourney.forEach(function (Accounts) {
+                if (Accounts.id == idAcc) {
+                    $scope.selectedJourney = journey;
+                    $scope.idAcc = idAcc
+                }
+            })};
+            function addVessel() {
+                var vessel = {
+                    DWT: $scope.dwt,
+                    GT: $scope.gt,
+                    accountId: $scope.idAcc,
+                    built: $scope.built,
+                    callsign: $scope.callsign,
+                    draught: $scope.draught,
+                    
+            }
         }
-
-        addVessel();
-    }
-})(angular.module('vesselfinder.vessel'));
+            addVessel();
+        }
+    }) (angular.module('vesselfinder.vessel'));
