@@ -7,6 +7,7 @@
         $scope.idAccount = $stateParams.id;
 
         $scope.getAccount = getAccount;
+        $scope.updateAccount = updateAccount;
 
 
         function getAccount() {
@@ -20,19 +21,21 @@
 
         }
 
-        $scope.updateAccount = function (userid) {
-            var updated_user_info = {
+        function updateAccount(){
+            var params = {
                 email: $scope.account.email,
                 username: $scope.account.username,
                 password: $scope.account.password
-            };
-            itemRef.ref('account/' + userid + "/").update(updated_user_info).then(function () {
-                notificationService.displaySuccess("Update account!")
-            }).catch(function (error) {
-                notificationService.displayWarning("Cannot update account");
-        })
+            }
+            apiService.update('account/' + $stateParams.id + '/', params, 
+                function(){
+                    notificationService.displaySuccess("Update success!");
+                    $state.go('account');
+                }, 
+                function(){
+                    notificationService.displaySuccess("Update failed!");
+                });
         }
-
 
         getAccount();
     }

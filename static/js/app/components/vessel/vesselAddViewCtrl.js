@@ -31,18 +31,76 @@
                     $scope.selectedJourney = journey;
                     $scope.idAcc = idAcc
                 }
-            })};
-            function addVessel() {
-                var vessel = {
-                    DWT: $scope.dwt,
-                    GT: $scope.gt,
-                    accountId: $scope.idAcc,
-                    built: $scope.built,
-                    callsign: $scope.callsign,
-                    draught: $scope.draught,
-                    
+            })
+        };
+        $scope.countries = [{
+            id: 1,
+            flagCode: "vn",
+            name: "VIET NAM"
+        },
+        {
+            id: 2,
+            flagCode: "th",
+            name: "THAILAND"
+        },
+        {
+            id: 3,
+            flagCode: "sg",
+            name: "SINGAPORE"
+        },
+        {
+            id: 4,
+            flagCode: "ph",
+            name: "PHILIPPINES"
+        },
+        {
+            id: 5,
+            flagCode: "my",
+            name: "MALAYSIA"
+        },
+        {
+            id: 6,
+            flagCode: "id",
+            name: "INDONESIA"
+        },
+        {
+            id: 7,
+            flagCode: "la",
+            name: "LAO PEOPLE'S DEMOCRATIC REPUBLIC"
+        },
+        {
+            id: 8,
+            flagCode: "kh",
+            name: "CAMBODIA"
+        },
+        {
+            id: 9,
+            flagCode: "mm",
+            name: "MYANMAR"
+        },
+        {
+            id: 10,
+            flagCode: "tl",
+            name: "TIMOR-LESTE"
+        },
+        {
+            id: 11,
+            flagCode: "bn",
+            name: "BRUNEI DARUSSALAM"
+        }
+    ]
+        function addVessel() {
+            var vessel = {
+                DWT: $scope.dwt,
+                GT: $scope.gt,
+                accountId: $scope.idAcc,
+                built: $scope.built,
+                callsign: $scope.callsign,
+                draught: $scope.draught,
+                flagCode: $scope.flagCode
+
             }
         }
-            addVessel();
-        }
-    }) (angular.module('vesselfinder.vessel'));
+        addVessel();
+    }
+})(angular.module('vesselfinder.vessel'));

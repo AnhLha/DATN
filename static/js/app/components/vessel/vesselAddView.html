@@ -54,7 +54,7 @@
                         <select class="form-control" style="width: 90%; border-radius: 5px;" value="Select Country"
                             data-style="btn-primary" data-container="body" ng-model="country" selectpicker>
                             <option ng-repeat="country in countries" ng-click="select(country.id)">
-                               <img src="">
+                              {{country.name}}
                             </option>
                         </select>
                     </div>
