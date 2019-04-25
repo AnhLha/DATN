@@ -3,51 +3,183 @@
 
     portAddViewCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$state', '$stateParams'];
     function portAddViewCtrl($scope, apiService, notificationService, $state, $stateParams) {
-        $scope.vesselInfoData = {};
-        $scope.imoVessel = $stateParams.imo;
-        $scope.picVessel = '';
-        $scope.picCountry = '';
-
-        $scope.getVessel = getVessel;
-
-        function getVessel() {
-
-            itemRef.ref('vessel/' + $stateParams.imo + '/').once('value', function (snapshot) {
-                $scope.vesselInfoData = snapshot.val();
-               
-
-                // get picture's vessel
-                var gsRef = storageRef.refFromURL('https://firebasestorage.googleapis.com/v0/b/vessel-dc69e.appspot.com/o/images/vessels/' + $scope.vesselInfoData.picture);
-                gsRef.getDownloadURL().then(function (url) {
-                    $scope.picVessel = url;
-                    if(!$scope.$$phase){
-                        $scope.$apply()
-                    }
-                }).catch(function (error) {
-                    // Handle any errors
-                    notificationService.displayWarning("Cannot download vessel's image");
-                });
-                // End get picture's vessel
-
-                // var spaceRefCountry = storageRef.child('/images/country/' + value.flagCode +'.png?alt=media&token=a283be66-f43b-4a4e-b7cf-774682186a14');
-                var gsCRef = storageRef.refFromURL('https://firebasestorage.googleapis.com/v0/b/vessel-dc69e.appspot.com/o/images/country/' + $scope.vesselInfoData.flagCode + '.png');
-                // storageRef.ref('https://firebasestorage.googleapis.com/v0/b/vessel-dc69e.appspot.com/o/images/country/' + value.flagCode + '.png').getDownloadURL().then(function (url) {
-                gsCRef.getDownloadURL().then(function (url) {
-                    $scope.picCountry = url;
-                    if(!$scope.$$phase){
-                        $scope.$apply()
-                    }
-                }).catch(function (error) {
-                    // Handle any errors
-                    alert("Cannot download country's image");
-                });
-                if(!$scope.$$phase){
-                    $scope.$apply()
-                }
-            });
-          
+        $scope.addPort = addPort;
+        $scope.countries = [{
+            id: 1,
+            flagCode: "vn",
+            name: "VIET NAM"
+        },{
+            id: 2,
+            flagCode: "th",
+            name: "THAILAND"
+        },{
+            id: 3,
+            flagCode: "sg",
+            name: "SINGAPORE"
+        },{
+            id: 4,
+            flagCode: "ph",
+            name: "PHILIPPINES"
+        },{
+            id: 5,
+            flagCode: "my",
+            name: "MALAYSIA"
+        },{
+            id: 6,
+            flagCode: "id",
+            name: "INDONESIA"
+        },{
+            id: 7,
+            flagCode: "la",
+            name: "LAO PEOPLE'S DEMOCRATIC REPUBLIC"
+        },{
+            id: 8,
+            flagCode: "kh",
+            name: "CAMBODIA"
+        },{
+            id: 9,
+            flagCode: "mm",
+            name: "MYANMAR"
+        },{
+            id: 10,
+            flagCode: "tl",
+            name: "TIMOR-LESTE"
+        },{
+            id: 11,
+            flagCode: "bn",
+            name: "BRUNEI DARUSSALAM"
+        }];
+        $scope.drydocks = [{
+            id: 1,
+            name: "small"
+        }, {
+            id: 2,
+            name: "medium"
+        }, {
+            id: 3,
+            name: "large"
+        }];
+        $scope.shelters = [{
+            id: 1,
+            name: "bad"
+        }, {
+            id: 2,
+            name: "normal"
+        }, {
+            id: 3,
+            name: "good"
+        }, {
+            id: 4,
+            name: "very good"
+        }];
+        $scope.sizes = [{
+            id: 1,
+            name: "small"
+        }, {
+            id: 2,
+            name: "medium"
+        }, {
+            id: 3,
+            name: "large"
+        }];
+        $scope.shiprepairs = [{
+            id: 1,
+            name: "limited"
+        }, {
+            id: 2,
+            name: "unlimited"
+        }];
+        $scope.types = [{
+            id: 1,
+            name: "River Basin"
+        }, {
+            id: 2,
+            name: "Fishing"
+        }, {
+            id: 3,
+            name: "Passenger Ship"
+        }, {
+            id: 4,
+            name: "Tankers"
+        }, {
+            id: 5,
+            name: "Cargo Ship"
+        }, {
+            id: 6,
+            name: "Cruise Ship"
+        }];
+        $scope.sizevessels = [{
+            id: 1,
+            name: "< 150m"
+        }, {
+            id: 1,
+            name: "150m - 250m"
+        }, {
+            id: 1,
+            name: "< 300m"
+        }];
+        $scope.itemDD = "";
+        $scope.itemFC = "";
+        $scope.itemS = "";
+        $scope.itemSR = "";
+        $scope.itemSize = "";
+        $scope.itemT = "";
+        $scope.itemVS = "";
+        $scope.selectDD = selectDD;
+        $scope.selectFC = selectFC;
+        $scope.selectS = selectS;
+        $scope.selectSR = selectSR;
+        $scope.selectSize = selectSize;
+        $scope.selectT = selectT;
+        $scope.selectVS = selectVS;
+        $scope.portiD = itemRef.ref().child('account').push().key;
+        function selectDD(item) {
+            $scope.itemDD = item;
+        };
+        function selectFC(item) {
+            $scope.itemDD = item;
+        };
+        function selectS(item) {
+            $scope.itemS = item;
+        };
+        function selectSR(item) {
+            $scope.itemSR = item;
+        };
+        function selectSize(item) {
+            $scope.itemSize = item;
+        };
+        function selectT(item) {
+            $scope.itemT = item;
+        };
+        function selectVS(item) {
+            $scope.itemVS = item;
+        }
+        function addPort() {
+            var params = {
+                dryDock: $scope.itemDD,
+                flagCode: $scope.itemFC,
+                lat: $scope.latitude,
+                lng: $scope.longitude,
+                loCode: $scope.locode,
+                name: $scope.name,
+                picture: "a.jpg",
+                pictureFlag: $scope.itemFC + ".png",
+                shelter: $scope.itemS,
+                shipRepairs: $scope.itemSR,
+                size: $scope.itemSize,
+                type: $scope.itemT,
+                vesselSize: $scope.itemVS
+            };
+            console.log(params);
+            apiService.insert("port/"+ $scope.portiD +"/",params,
+            function(){
+                notificationService.displaySuccess("Add succeeded!");
+                $state.go("port");
+            },
+            function(){
+                notificationService.displayError("Add failed!");
+            })
         }
 
-        getVessel();
     }
 })(angular.module('vesselfinder.port'));

@@ -1,8 +1,8 @@
 (function (app) {
     app.controller('accountAddViewCtrl', accountAddViewCtrl);
 
-    accountAddViewCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$state', '$stateParams'];
-    function accountAddViewCtrl($scope, apiService, notificationService, $state, $stateParams) {
+    accountAddViewCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$state'];
+    function accountAddViewCtrl($scope, apiService, notificationService, $state) {
         $scope.types = [
             {
                 id: 1,
@@ -36,6 +36,7 @@
             apiService.insert("account/" + $scope.useriD + "/", params,
             function(){
                 notificationService.displaySuccess("Add succeeded!");
+                $state.go("account");
             },
             function(){
                 notificationService.displayError("Add failed!");
