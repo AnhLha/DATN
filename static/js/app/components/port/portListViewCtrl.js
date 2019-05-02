@@ -32,6 +32,7 @@
                             picture: valPort.picture,
                             pictureFlag: valPort.pictureFlag
                         };
+                        console.log(data);
                         listPort.push(data);
                     })
                     $scope.ports = listPort;
@@ -86,6 +87,7 @@
                 notificationService.displayError("Remove failed: " + error.message);
             })        
         }
+        
         $scope.getPorts();
 
     }

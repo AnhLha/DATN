@@ -4,7 +4,8 @@
                  'vesselfinder.vessel',
                  'vesselfinder.port',
                  'vesselfinder.account',
-                 'vesselfinder.common'])
+                 'vesselfinder.common',
+                 'ngCookies'])
                  .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];

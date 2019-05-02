@@ -226,7 +226,7 @@
             }
             else {
               polylineJourney.addTo(map);
-              map.fitBounds(polyline.getBounds());
+              map.fitBounds(polylineJourney.getBounds());
             }
           };
           // End function visible or disvisible journey line

@@ -137,7 +137,7 @@
             $scope.itemDD = item;
         };
         function selectFC(item) {
-            $scope.itemDD = item;
+            $scope.itemFC = item;
         };
         function selectS(item) {
             $scope.itemS = item;
@@ -154,6 +154,7 @@
         function selectVS(item) {
             $scope.itemVS = item;
         }
+        console.log( $scope.itemFC)
         function addPort() {
             var params = {
                 dryDock: $scope.itemDD,
@@ -162,7 +163,7 @@
                 lng: $scope.longitude,
                 loCode: $scope.locode,
                 name: $scope.name,
-                picture: "a.jpg",
+                picture: "cailan.jpg",
                 pictureFlag: $scope.itemFC + ".png",
                 shelter: $scope.itemS,
                 shipRepairs: $scope.itemSR,
@@ -170,11 +171,10 @@
                 type: $scope.itemT,
                 vesselSize: $scope.itemVS
             };
-            console.log(params);
             apiService.insert("port/"+ $scope.portiD +"/",params,
             function(){
                 notificationService.displaySuccess("Add succeeded!");
-                $state.go("port");
+               // $state.go("port");
             },
             function(){
                 notificationService.displayError("Add failed!");

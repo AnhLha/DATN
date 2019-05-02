@@ -28,7 +28,7 @@
                                 ng-model="port.picture">
                         </div>
                     </div>
-                    <div class="form-group"  style="height: 30px">
+                    <div class="form-group" style="height: 30px">
                         <label class="col-sm-2 control-label">Locode </label>
                         <div class="col-sm-9" style="height: 30px">
                             <p style="margin-top:7px"> {{port.loCode}}</p>
@@ -45,36 +45,70 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Type</label>
-                        <input type="text" class="form-control" style="width: 90%" name="type" required
-                            ng-model="port.type">
+                        <select class="form-control" style="width: 80%; border-radius: 5px;" value="Select Type"
+                            data-style="btn-primary" data-container="body" selectpicker placeholder="port.type">
+                            <option ng-repeat="type in types" ng-click="selectT(type.name)">
+                                {{type.name}}
+                            </option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Dry dock</label>
-                        <input type="text" class="form-control" style="width: 90%" name="account" required
-                            ng-model="port.dryDock">
+                        <!-- <input type="text" class="form-control" style="width: 90%" name="account" required
+                            ng-model="port.dryDock"> -->
+                        <select class="form-control" style="width: 80%; border-radius: 5px;" value="Select Dry dock"
+                            data-style="btn-primary" data-container="body" selectpicker>
+                            <option ng-repeat="drydock in drydocks" ng-click="selectDD(drydock.name)">
+                                {{drydock.name}}
+                            </option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Shelter</label>
-                        <input type="text" class="form-control" style="width: 90%" name="account" required
-                            ng-model="port.shelter">
+                        <!-- <input type="text" class="form-control" style="width: 90%" name="account" required
+                            ng-model="port.shelter"> -->
+                        <select class="form-control" style="width: 80%; border-radius: 5px;" value="Select Shelter"
+                            data-style="btn-primary" data-container="body" selectpicker>
+                            <option ng-repeat="shelter in shelters" ng-click="selectS(shelter.name)">
+                                {{shelter.name}}
+                            </option>
+                        </select>
                     </div>
 
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Ship Repairs</label>
-                        <input type="text" class="form-control" style="width: 90%" name="account" required
-                            ng-model="port.shipRepairs">
+                        <!-- <input type="text" class="form-control" style="width: 90%" name="account" required
+                            ng-model="port.shipRepairs"> -->
+                        <select class="form-control" style="width: 80%; border-radius: 5px;" value="Select Ship Repairs"
+                            data-style="btn-primary" data-container="body" selectpicker>
+                            <option ng-repeat="shiprepair in shiprepairs" ng-click="selectSR(shiprepair.name)">
+                                {{shiprepair.name}}
+                            </option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Size</label>
-                        <input type="text" class="form-control" style="width: 90%" name="account" required
-                            ng-model="port.size">
+                        <!-- <input type="text" class="form-control" style="width: 90%" name="account" required
+                            ng-model="port.size"> -->
+                        <select class="form-control" style="width: 80%; border-radius: 5px;" value="Select Size"
+                            data-style="btn-primary" data-container="body" selectpicker>
+                            <option ng-repeat="size in sizes" ng-click="selectSize(size.name)">
+                                {{size.name}}
+                            </option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Size's Vessel</label>
-                        <input type="text" class="form-control" style="width: 90%" name="account" required
-                            ng-model="port.vesselSize">
+                        <!-- <input type="text" class="form-control" style="width: 90%" name="account" required
+                            ng-model="port.vesselSize"> -->
+                        <select class="form-control" style="width: 80%; border-radius: 5px;"
+                            value="Select Size's Vessel" data-style="btn-primary" data-container="body" selectpicker>
+                            <option ng-repeat="sizevessel in sizevessels" ng-click="selectVS(sizevessel.name)">
+                                {{sizevessel.name}}
+                            </option>
+                        </select>
                     </div>
                 </div>
 
@@ -82,7 +116,7 @@
             <div class="box-footer">
                 <button ui-sref="port" class="btn btn-default">Cancel</button>
                 <button type="submit" ng-disabled="frmUpdatePort.$invalid"
-                    class="btn btn-success pull-right">Save</button>
+                    class="btn btn-success pull-right" ng-click="updatePort()">Save</button>
             </div><!-- /.box-footer -->
         </form>
     </div><!-- /.box -->
