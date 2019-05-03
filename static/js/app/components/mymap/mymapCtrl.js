@@ -79,19 +79,41 @@
       }).addTo(map);
       var iconVesselRun = L.icon({
         iconUrl: 'static/img/icon-ship/running/0/45.png',
-        iconSize: [20, 20]
+        iconSize: [20, 20],
+        iconAnchor: [10, 10],
+        labelAnchor: [6, 0]
       });
 
+      var options = {
+        position: 'topright',
+        title: 'Search',
+        placeholder: 'enter link id ',
+        maxResultLength: 15,
+        threshold: 0.5,
+        showInvisibleFeatures: false,
+        showResultFct: function (feature, container) {
+          props = feature.properties;
+          var name = L.DomUtil.create('b', null, container);
+          name.innerHTML = props.id;
 
+          container.appendChild(L.DomUtil.create('br', null, container));
+
+          var cat = props.id
+          info = '' + cat + ', ' + 'th link';
+          container.appendChild(document.createTextNode(info));
+        }
+      };
+      var searchC = L.control.fuseSearch(options);
+      searchC.addTo(map);
       // start foreach ls post of vessel data
       angular.forEach(lsPosOfVessel, function (value, key) {
-        var tempvessel = L.marker(value.position, { icon: iconVesselRun }).addTo(map).bindPopup(value.name);
+        var tempvessel = L.marker(value.position, { icon: iconVesselRun }).bindTooltip(value.name + "<br>" + value.type).addTo(map);//.bindPopup(value.name);
 
         // set popup for vessel in map
-        var popup = L.popup()
-          .setLatLng(value.position)
-          .setContent(value.name)
-          .openOn(map);
+        // var popup = L.popup()
+        //   .setLatLng(value.position)
+        //   .setContent(value.name)
+        //   .openOn(map);
         // End set popup for vessel in map
 
         var polygon = [
@@ -151,7 +173,7 @@
         })
 
         // set event click a vessel in map
-        
+
         tempvessel.on('click', function (ev) {
 
           $scope.vessel = {
