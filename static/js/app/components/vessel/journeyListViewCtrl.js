@@ -20,8 +20,8 @@
       angular.forEach(listJourney, function (valJourney, keyJourney) {
         var itemJourney = {
           idJourney: keyJourney,
-          eta: valJourney.eta,
-          etd: valJourney.etd,
+          eta: moment.unix(valJourney.eta).format("DD/MM/YYYY hh:mm"),
+          etd: moment.unix(valJourney.etd).format("DD/MM/YYYY hh:mm"),
           from: valJourney.from,
           to: valJourney.to,
           status: valJourney.status,

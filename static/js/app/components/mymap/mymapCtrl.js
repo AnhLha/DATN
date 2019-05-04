@@ -33,7 +33,11 @@
     }
 
     var lsPosOfVessel = [];
-
+    var listPort = [];
+    itemRef.ref('port/').on('value', function (snapshot) {
+      listPort = snapshot.val();
+    });
+    
     itemRef.ref('vessel/').on('value', function (snapshot) {
       var listImo = snapshot.val();
 
@@ -66,10 +70,10 @@
         lsPosOfVessel.push(data);
       })
 
-
       initialize();
 
     })
+
 
     function initialize() {
       var map = L.map('leaflet-map').setView([16.0669077, 108.2137987], 5);
@@ -77,38 +81,43 @@
       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
-      var iconVesselRun = L.icon({
-        iconUrl: 'static/img/icon-ship/running/0/45.png',
+      var iconPort = L.icon({
+        iconUrl: 'static/img/icon-ship/icons8-anchor-24.png',
         iconSize: [20, 20],
         iconAnchor: [10, 10],
         labelAnchor: [6, 0]
       });
 
-      var options = {
-        position: 'topright',
-        title: 'Search',
-        placeholder: 'enter link id ',
-        maxResultLength: 15,
-        threshold: 0.5,
-        showInvisibleFeatures: false,
-        showResultFct: function (feature, container) {
-          props = feature.properties;
-          var name = L.DomUtil.create('b', null, container);
-          name.innerHTML = props.id;
+      
 
-          container.appendChild(L.DomUtil.create('br', null, container));
+      var markersLayer = L.layerGroup();	//layer contain searched elements
+      map.addLayer(markersLayer);
+      // var controlSearch = L.Control.Search({
+      //   position: 'topright',
+      //   layer: markersLayer,
+      //   initial: false,
+      //   zoom: 12,
+      //   marker: false
+      // });
 
-          var cat = props.id
-          info = '' + cat + ', ' + 'th link';
-          container.appendChild(document.createTextNode(info));
-        }
-      };
-      var searchC = L.control.fuseSearch(options);
-      searchC.addTo(map);
-      // start foreach ls post of vessel data
+      // map.addControl(controlSearch);
+      //controlSearch.addTo(map);
+
+     
+      angular.forEach(listPort, function(valPort, keyPort){
+        var tempvessel = L.marker([valPort.lat,valPort.lng], { icon: iconPort, riseOnHover: true }).bindLabel(valPort.name + "<br>" + valPort.type).addTo(map);//.bindPopup(value.name);
+      });
+
+       // start foreach ls post of vessel data   
       angular.forEach(lsPosOfVessel, function (value, key) {
-        var tempvessel = L.marker(value.position, { icon: iconVesselRun }).bindTooltip(value.name + "<br>" + value.type).addTo(map);//.bindPopup(value.name);
-
+        var iconVesselRun = L.icon({
+          iconUrl: 'static/img/icon-ship/running/0/' + value.course + '.png',
+          iconSize: [20, 20],
+          iconAnchor: [10, 10],
+          labelAnchor: [6, 0]
+        });
+        var tempvessel = L.marker(value.position, { icon: iconVesselRun, riseOnHover: true }).bindLabel(value.name + "<br>" + value.type).addTo(map);//.bindPopup(value.name);
+        markersLayer.addLayer(tempvessel);
         // set popup for vessel in map
         // var popup = L.popup()
         //   .setLatLng(value.position)
@@ -141,7 +150,6 @@
 
               itemRef.ref('journey/' + value.imo + '/' + keyJourney + '/schedule/').on('value', function (snapshot) {
                 var scheduleData = snapshot.val(); // get journey data a vessel 
-                console.log(scheduleData);
                 var latlnglisten = [];
                 angular.forEach(scheduleData, function (val) {
                   latlnglisten.push([val[1], val[0]]);
@@ -235,7 +243,7 @@
               map.removeLayer(polyline);
             }
             else {
-              polyline.addTo(map);
+              polyline.bindLabel(value.name + "<br>" + value.type).addTo(map);
               map.fitBounds(polyline.getBounds());
             }
           };
@@ -247,7 +255,7 @@
               map.removeLayer(polylineJourney);
             }
             else {
-              polylineJourney.addTo(map);
+              polylineJourney.bindLabel(value.name + "<br>" + value.type).addTo(map);
               map.fitBounds(polylineJourney.getBounds());
             }
           };
@@ -265,6 +273,17 @@
         // End set event click a vessel in map
       })
       // end start foreach ls post of vessel data
+
+      var controlSearch = L.Control.Search({
+        position: 'topright',
+        layer: markersLayer,
+        initial: false,
+        zoom: 12,
+        marker: false
+      });
+
+      map.addControl(controlSearch);
+      //   controlSearch.addTo(map);
     }
   }
 })(angular.module('vesselfinder.mymap'));

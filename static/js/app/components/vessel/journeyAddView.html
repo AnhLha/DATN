@@ -28,11 +28,11 @@
                                 <form>
                                     <div class="form-group">
                                         <label for="input01">From</label>
-                                        <input type="text" class="form-control" id="input01" placeholder="From">
+                                        <input type="text" class="form-control" id="input01" placeholder="From" ng-model ="from">
                                     </div>
                                     <div class="form-group">
                                         <label for="input01">To</label>
-                                        <input type="text" class="form-control" id="input02" placeholder="To">
+                                        <input type="text" class="form-control" id="input02" placeholder="To" ng-model ="to">
                                     </div>
                                     <div class="form-group">
                                         <label>Date range:</label>
@@ -40,8 +40,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <!-- <input type="text" class="form-control pull-right" id="reservation"> -->
-                                            <input type="text" id="config-demo" class="form-control">
+                                            <input type="text" class="form-control pull-right" id="etaEtd" ng-model="etaEtd">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -60,3 +59,15 @@
         </form>
     </div>
 </section>
+<script>
+    $('#etaEtd').daterangepicker({
+        timePickerIncrement: 30, 
+        format: 'DD/MM/YYYY',
+        timePicker: true,
+        startDate: moment().startOf('hour').subtract(24,'hour'),
+        endDate: moment().startOf('hour'),
+        locale: {
+            format: 'DD/MM/YYYY hh:mm'
+        }
+    });
+</script>
