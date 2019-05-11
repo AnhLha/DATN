@@ -29,7 +29,7 @@
             </div><!-- /input-group -->
         </div>
         <div>
-            <button class="btn btn-primary pull-right" type="button" ui-sref="vessel_add">Add</button>
+            <button class="btn btn-primary pull-right" type="button" ui-sref="vessel.add">Add</button>
         </div>
     </di>
     <div class="row">
@@ -52,10 +52,10 @@
             <td>{{item.dwt}}</td>
             <td>{{item.length}} x {{item.width}} m</td>
             <td> 
-                <button class="btn  btn-sm btn-primary" ui-sref="vessel_edit({imo:item.imo})"><i class="fa fa-pencil" title="Change"></i></button>
+                <button class="btn  btn-sm btn-primary" ui-sref="vessel.edit({imo:item.imo})"><i class="fa fa-pencil" title="Change"></i></button>
                 <button class="btn  btn-sm btn-danger" ng-click="deleteVessel(item.imo)"><i class="fa fa-trash" title="Delete"></i></button>
-                <button class="btn  btn-sm btn-success" style="width:30px" ui-sref="vessel_detail({imo:item.imo})"><i class="fa fa-info" title="Detail"></i></button>
-                <button class="btn  btn-sm btn-success" style="width:30px" ui-sref="journey({imo:item.imo})"><i class="fa fa-stumbleupon" title="Journey"></i></button>
+                <button class="btn  btn-sm btn-success" style="width:30px" ui-sref="vessel.detail({imo:item.imo})"><i class="fa fa-info" title="Detail"></i></button>
+                <button class="btn  btn-sm btn-success" style="width:30px" ui-sref="vessel.journey({imo:item.imo})"><i class="fa fa-stumbleupon" title="Journey"></i></button>
             </td>
             </tr>
             <tfoot>

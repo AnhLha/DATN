@@ -6,14 +6,18 @@
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state('account', {
             url: "/account",
+            templateUrl: "/static/js/app/shared/navigation/navView.html",
+            controller: "navController"
+        }).state('account.list', {
+            url: "/list",
             templateUrl: "/static/js/app/components/account/accountListView.html",
             controller: "accountListViewCtrl"
-        }).state('account_edit', {
-            url: "/account_edit/:id",
+        }).state('account.edit', {
+            url: "/edit/:id",
             templateUrl: "/static/js/app/components/account/accountEditView.html",
             controller: "accountEditViewCtrl"
-        }).state('account_add', {
-            url: "/account_add",
+        }).state('account.add', {
+            url: "/add",
             templateUrl: "/static/js/app/components/account/accountAddView.html",
             controller: "accountAddViewCtrl"
         });

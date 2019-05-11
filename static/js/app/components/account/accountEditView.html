@@ -5,7 +5,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a ui-sref="account">Account</a></li>
+        <li><a ui-sref="account.list">Account</a></li>
         <li class="active">Edit</li>
     </ol>
 </section>
@@ -59,7 +59,7 @@
                 </div>
             </div><!-- /.box-body -->
             <div class="box-footer">
-                <button ui-sref="account" class="btn btn-default">Back</button>
+                <button ui-sref="account.list" class="btn btn-default">Back</button>
                 <button type="submit" ng-disabled="frmUpdateAccount.$invalid"
                     class="btn btn-success pull-right" ng-click="updateAccount()">Save</button>
             </div><!-- /.box-footer -->

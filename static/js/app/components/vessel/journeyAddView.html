@@ -4,8 +4,8 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a ui-sref="vessel"></i> Vessel</a></li>
-        <li><a ui-sref="journey({imo:imo})"></i> Journey</a></li>
+        <li><a ui-sref="vessel.list"></i> Vessel</a></li>
+        <li><a ui-sref="vessel.journey({imo:imo})"></i> Journey</a></li>
         <li class="active">Add journey</li>
     </ol>
 </section>
@@ -46,7 +46,7 @@
                                     </div>
                                 </form>
                                 <div>
-                                    <button type="button" class="btn btn-primary pull-left" ui-sref="journey({imo:imo})"
+                                    <button type="button" class="btn btn-primary pull-left" ui-sref="vessel.journey({imo:imo})"
                                         title="Cancel">Cancel</button>
                                     <button type="button" class="btn btn-primary pull-right" ng-click="Accept()"
                                         title="Save">Save</button>

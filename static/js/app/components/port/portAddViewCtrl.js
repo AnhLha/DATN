@@ -174,7 +174,7 @@
             apiService.insert("port/"+ $scope.portiD +"/",params,
             function(){
                 notificationService.displaySuccess("Add succeeded!");
-               // $state.go("port");
+                $state.go("port.list");
             },
             function(){
                 notificationService.displayError("Add failed!");

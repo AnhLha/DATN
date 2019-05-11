@@ -33,7 +33,7 @@
             </div><!-- /input-group -->
         </div>
         <div>
-            <button class="btn btn-primary pull-right" type="button" ui-sref="account_add">Add</button>
+            <button class="btn btn-primary pull-right" type="button" ui-sref="account.add">Add</button>
         </div>
     </di>
     <div class="row">
@@ -54,7 +54,7 @@
             <td ng-if="item.type == 2">Viewer</td> 
             <td ng-if="item.type == 0">Admin</td> 
             <td>
-                <button class="btn btn-sm btn-primary" ui-sref="account_edit({id:item.id})"><i class="fa fa-pencil" title="Change"></i></button>
+                <button class="btn btn-sm btn-primary" ui-sref="account.edit({id:item.id})"><i class="fa fa-pencil" title="Change"></i></button>
                 <button class="btn  btn-sm btn-danger" ng-click="deleteAccount(item.id)"><i class="fa fa-trash" title="Delete"></i></button>
             </td>
             </tr>

@@ -6,18 +6,22 @@
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state('port', {
             url: "/port",
+            templateUrl: "/static/js/app/shared/navigation/navView.html",
+            controller: "navController"
+        }).state('port.list', {
+            url: "/list",
             templateUrl: "/static/js/app/components/port/portListView.html",
             controller: "portListViewCtrl"
-        }).state('port_detail', {
-            url: "/port_detail/:id",
+        }).state('port.detail', {
+            url: "/detail/:id",
             templateUrl: "/static/js/app/components/port/portDetailView.html",
             controller: "portDetailViewCtrl"
-        }).state('port_edit', {
-            url: "/port_edit/:id",
+        }).state('port.edit', {
+            url: "/edit/:id",
             templateUrl: "/static/js/app/components/port/portEditView.html",
             controller: "portEditViewCtrl"
-        }).state('port_add', {
-            url: "/port_add",
+        }).state('port.add', {
+            url: "/add",
             templateUrl: "/static/js/app/components/port/portAddView.html",
             controller: "portAddViewCtrl"
         });

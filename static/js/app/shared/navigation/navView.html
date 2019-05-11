@@ -1,0 +1,89 @@
+<header class="main-header">
+    <!-- Logo -->
+    <a href="/" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">VF</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">VESSEL FINDER</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="../static/img/avatar.png" class="user-image" alt="User Image">
+                        <span class="hidden-xs">{{username}}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="../static/img/avatar.png" class="img-circle" alt="User Image">
+
+                            <p>
+                                Admin - Web Developer
+                                <small>Join from 03.2019</small>
+                            </p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Control Sidebar Toggle Button -->
+                <!-- <li> -->
+                <!-- <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a> -->
+                <!-- </li> -->
+            </ul>
+        </div>
+    </nav>
+</header>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="../static/img/avatar.png" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>{{username}}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">FUNCTIONS</li>
+            <li><a ui-sref="mymap.map"><i class="fa fa-map-o"></i> <span>My Map</span></a></li>
+            <li><a ui-sref="vessel.list"><i class="fa fa-ship"></i> <span>Vessel</span></a></li>
+            <li><a ui-sref="port.list"><i class="fa fa-flag"></i> <span>Port</span></a></li>
+            <li><a ui-sref="account.list"><i class="fa fa-users"></i> <span>Account</span></a></li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <div ui-view></div>
+</div>
+<!-- /.content-wrapper -->
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        <b>Version</b> 1.0.0
+    </div>
+    <strong>Copyright &copy; 2019 <a href="#">AnhLha</a>.</strong> All rights
+    reserved.
+</footer>

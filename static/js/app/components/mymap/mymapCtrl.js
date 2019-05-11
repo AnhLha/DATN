@@ -37,7 +37,7 @@
     itemRef.ref('port/').on('value', function (snapshot) {
       listPort = snapshot.val();
     });
-    
+
     itemRef.ref('vessel/').on('value', function (snapshot) {
       var listImo = snapshot.val();
 
@@ -76,11 +76,13 @@
 
 
     function initialize() {
+
       var map = L.map('leaflet-map').setView([16.0669077, 108.2137987], 5);
 
       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
+
       var iconPort = L.icon({
         iconUrl: 'static/img/icon-ship/icons8-anchor-24.png',
         iconSize: [20, 20],
@@ -88,7 +90,15 @@
         labelAnchor: [6, 0]
       });
 
-      
+      // var latlngExample = [
+      //   [45.51, -122.68],
+      //   [37.77, -122.43],
+      //   [34.04, -118.2]
+      // ];
+      // var polylineExample = L.polyline(latlngExample, { color: 'red' }).addTo(map);
+
+      // // zoom the map to the polyline
+      // map.fitBounds(polylineExample.getBounds());
 
       var markersLayer = L.layerGroup();	//layer contain searched elements
       map.addLayer(markersLayer);
@@ -103,20 +113,23 @@
       // map.addControl(controlSearch);
       //controlSearch.addTo(map);
 
-     
-      angular.forEach(listPort, function(valPort, keyPort){
-        var tempvessel = L.marker([valPort.lat,valPort.lng], { icon: iconPort, riseOnHover: true }).bindLabel(valPort.name + "<br>" + valPort.type).addTo(map);//.bindPopup(value.name);
+
+      angular.forEach(listPort, function (valPort, keyPort) {
+        var tempvessel = L.marker([valPort.lat, valPort.lng], { icon: iconPort, riseOnHover: true }).bindLabel(valPort.name + "<br>" + valPort.type).addTo(map);//.bindPopup(value.name);
       });
 
-       // start foreach ls post of vessel data   
+      // start foreach ls post of vessel data   
       angular.forEach(lsPosOfVessel, function (value, key) {
+
         var iconVesselRun = L.icon({
           iconUrl: 'static/img/icon-ship/running/0/' + value.course + '.png',
           iconSize: [20, 20],
           iconAnchor: [10, 10],
           labelAnchor: [6, 0]
         });
-        var tempvessel = L.marker(value.position, { icon: iconVesselRun, riseOnHover: true }).bindLabel(value.name + "<br>" + value.type).addTo(map);//.bindPopup(value.name);
+
+        var tempvessel = L.marker(value.position, { icon: iconVesselRun, riseOnHover: true }).bindLabel(value.name + "<br>" + value.type).addTo(map);       //.bindPopup(value.name);
+
         markersLayer.addLayer(tempvessel);
         // set popup for vessel in map
         // var popup = L.popup()

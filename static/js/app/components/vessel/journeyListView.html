@@ -4,7 +4,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a ui-sref="vessel">Vessel</a></li>
+        <li><a ui-sref="vessel.list">Vessel</a></li>
         <li class="active">Journey</li>
     </ol>
 </section>
@@ -63,11 +63,11 @@
                                 Your ship can add new itineraries
                             </p>
                             <button type="button" class="btn btn-primary" title="Add Journey"
-                                ui-sref="journey_add({imo:imo})" ng-if="finished==true">
+                                ui-sref="vessel.add_journey({imo:imo})" ng-if="finished==true">
                                 Add Journey
                             </button>
                             <button type="button" class="btn btn-primary pull-right" title="Back"
-                                ui-sref="vessel">Back</button>
+                                ui-sref="vessel.list">Back</button>
                         </div>
                     </div>
                 </div>

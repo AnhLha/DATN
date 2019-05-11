@@ -6,10 +6,14 @@
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state('mymap', {
             url: "/mymap",
+            templateUrl: "/static/js/app/shared/navigation/navView.html",
+            controller: "navController"
+        }).state('mymap.map', {
+            url: "/map",
             templateUrl: "/static/js/app/components/mymap/mymap.html",
             controller: "mymapCtrl"
-        }).state('mymap_vessel_detail', {
-            url: "/mymap_vessel_detail/:imo",
+        }).state('mymap.vesselDetail', {
+            url: "/vesselDetail/:imo",
             templateUrl: "/static/js/app/components/mymap/vesselDetailView.html",
             controller: "vesselDetailViewCtrl"
         });

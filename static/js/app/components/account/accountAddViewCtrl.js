@@ -36,7 +36,7 @@
             apiService.insert("account/" + $scope.useriD + "/", params,
             function(){
                 notificationService.displaySuccess("Add succeeded!");
-                $state.go("account");
+                $state.go("account.list");
             },
             function(){
                 notificationService.displayError("Add failed!");

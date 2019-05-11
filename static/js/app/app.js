@@ -11,10 +11,14 @@
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state('home', {
-            url: "/",
+            url: "/home",
+            templateUrl: "/static/js/app/shared/navigation/navView.html",
+            controller: "navController"
+        }).state('home.static', {
+            url: "/static",
             templateUrl: "/static/js/app/components/home/homeView.html",
             controller: "homeController"
         });
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/mymap/map');
     }
 })();
