@@ -4,6 +4,13 @@
   mymapCtrl.$inject = ['$scope', 'apiService', 'notificationService'];
 
   function mymapCtrl($scope, apiService, notificationService) {
+
+    $scope.mymap = L.map('leaflet-map').setView([16.0669077, 108.2137987], 5);
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo($scope.mymap);
+
+
     $scope.vessels = [];
     $scope.vessel = {
       name: "",
@@ -36,6 +43,7 @@
     $scope.picCountry = '';
     var lsPosOfVessel = [];
     var listPort = [];
+
     itemRef.ref('port/').on('value', function (snapshot) {
       listPort = snapshot.val();
     });
@@ -76,14 +84,8 @@
 
     })
 
-
     function initialize() {
 
-      var map = L.map('leaflet-map').setView([16.0669077, 108.2137987], 5);
-
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
 
       var iconPort = L.icon({
         iconUrl: 'static/img/icon-ship/icons8-anchor-24.png',
@@ -117,7 +119,8 @@
 
 
       angular.forEach(listPort, function (valPort, keyPort) {
-        var tempvessel = L.marker([valPort.lat, valPort.lng], { icon: iconPort, riseOnHover: true }).bindLabel(valPort.name + "<br>" + valPort.type).addTo(map);//.bindPopup(value.name);
+        var tempvessel = L.marker([valPort.lat, valPort.lng], { icon: iconPort, riseOnHover: true })
+          .bindLabel(valPort.name + "<br>" + valPort.type).addTo($scope.mymap);//.bindPopup(value.name);
       });
 
       // start foreach ls post of vessel data   
@@ -130,9 +133,10 @@
           labelAnchor: [6, 0]
         });
 
-        var tempvessel = L.marker(value.position, { icon: iconVesselRun, riseOnHover: true }).bindLabel(value.name + "<br>" + value.type).addTo(map);       //.bindPopup(value.name);
+        var tempvessel = L.marker(value.position, { icon: iconVesselRun, riseOnHover: true })
+          .bindLabel(value.name + "<br>" + value.type).addTo($scope.mymap);       //.bindPopup(value.name);
 
-       //markersLayer.addLayer(tempvessel);
+        //markersLayer.addLayer(tempvessel);
         // set popup for vessel in map
         // var popup = L.popup()
         //   .setLatLng(value.position)
@@ -254,30 +258,36 @@
 
           // function visible or disvisible trackhistory line
           $scope.trackhistoryFunc = function () {
-            if (polyline._map == map) {
-              map.removeLayer(polyline);
+            if (polyline._map == $scope.mymap) {
+              $scope.mymap.removeLayer(polyline);
             }
             else {
-              polyline.bindLabel(value.name + "<br>" + value.type).addTo(map);
-              map.fitBounds(polyline.getBounds());
+              polyline.bindLabel(value.name + "<br>" + value.type).addTo($scope.mymap);
+              var bound = polyline.getBounds();
+              var position = L.latLng((bound._northEast.lat + bound._southWest.lat)/2, (bound._northEast.lng + bound._southWest.lng)/2);
+              $scope.mymap.setView(position, 5);
             }
           };
           // End function visible or disvisible trackhistory line
 
           // function visible or disvisible journey line
           $scope.trackJourneyFunc = function () {
-            if (polylineJourney._map == map) {
-              map.removeLayer(polylineJourney);
+            if (polylineJourney._map == $scope.mymap) {
+              $scope.mymap.removeLayer(polylineJourney);
             }
             else {
-              polylineJourney.bindLabel(value.name + "<br>" + value.type).addTo(map);
-              map.fitBounds(polylineJourney.getBounds());
+              polylineJourney.bindLabel(value.name + "<br>" + value.type).addTo($scope.mymap);
+              var bound = polylineJourney.getBounds();
+              var position = L.latLng((bound._northEast.lat + bound._southWest.lat)/2, (bound._northEast.lng + bound._southWest.lng)/2);
+              $scope.mymap.setView(position, 5);
+              // $scope.mymap.panTo(position);
+              // $scope.mymap.fitBounds();
             }
           };
           // End function visible or disvisible journey line
 
           // show polygon on map 
-          if (polygon._map == map) {
+          if (polygon._map == $scope.mymap) {
             window.polygon.remove();
           }
           else {
@@ -297,7 +307,7 @@
       //   marker: false
       // });
 
-     // map.addControl(controlSearch);
+      // map.addControl(controlSearch);
       //   controlSearch.addTo(map);
     }
   }
