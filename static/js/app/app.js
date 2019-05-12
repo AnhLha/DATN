@@ -14,6 +14,10 @@
             url: "/home",
             templateUrl: "/static/js/app/shared/navigation/navView.html",
             controller: "navController"
+        }).state('login', {
+            url: "/login",
+            templateUrl: "/static/js/app/components/home/loginView.html",
+            controller: "loginController"
         }).state('home.static', {
             url: "/static",
             templateUrl: "/static/js/app/components/home/homeView.html",

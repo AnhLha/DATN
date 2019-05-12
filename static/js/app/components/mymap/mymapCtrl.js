@@ -32,6 +32,8 @@
       lat: ''
     }
 
+    $scope.picVessel = '';
+    $scope.picCountry = '';
     var lsPosOfVessel = [];
     var listPort = [];
     itemRef.ref('port/').on('value', function (snapshot) {
@@ -100,8 +102,8 @@
       // // zoom the map to the polyline
       // map.fitBounds(polylineExample.getBounds());
 
-      var markersLayer = L.layerGroup();	//layer contain searched elements
-      map.addLayer(markersLayer);
+      // var markersLayer = L.layerGroup();	//layer contain searched elements
+      // map.addLayer(markersLayer);
       // var controlSearch = L.Control.Search({
       //   position: 'topright',
       //   layer: markersLayer,
@@ -130,7 +132,7 @@
 
         var tempvessel = L.marker(value.position, { icon: iconVesselRun, riseOnHover: true }).bindLabel(value.name + "<br>" + value.type).addTo(map);       //.bindPopup(value.name);
 
-        markersLayer.addLayer(tempvessel);
+       //markersLayer.addLayer(tempvessel);
         // set popup for vessel in map
         // var popup = L.popup()
         //   .setLatLng(value.position)
@@ -287,15 +289,15 @@
       })
       // end start foreach ls post of vessel data
 
-      var controlSearch = L.Control.Search({
-        position: 'topright',
-        layer: markersLayer,
-        initial: false,
-        zoom: 12,
-        marker: false
-      });
+      // var controlSearch = L.Control.Search({
+      //   position: 'topright',
+      //   layer: markersLayer,
+      //   initial: false,
+      //   zoom: 12,
+      //   marker: false
+      // });
 
-      map.addControl(controlSearch);
+     // map.addControl(controlSearch);
       //   controlSearch.addTo(map);
     }
   }

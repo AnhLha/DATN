@@ -5,7 +5,7 @@
     function homeController($scope, $cookies, apiService, notificationService) {
         //$rootScope.username = 'abc';
         //$rootScope.rule = 1;
-        $cookies.put('username', 'abc');
+        //$cookies.put('username', 'abc');
     }
 })(angular.module('vesselfinder'));
 

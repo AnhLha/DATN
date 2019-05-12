@@ -9,7 +9,8 @@
             del: del,
             update: update,
             del: del,
-            getpaging: getpaging
+            getpaging: getpaging,
+            login: login
         }
 
         function get(url, params, success, failure){
@@ -85,6 +86,19 @@
             .catch(function(error) {
                 failure(error);     //notificationService.displayError("Remove failed: " + error.message);
             });
+        }
+
+        function login(url, email, password, success, failure){
+            itemRef.ref(url)
+                .orderByChild("email").equalTo(email)
+                .once('value', 
+                function(snapshot) {
+                    success(snapshot);
+                }, 
+                function(error){
+                    //notificationService.displayError(error.message);
+                    failure();
+                });
         }
     }
 })(angular.module('vesselfinder.common'));
