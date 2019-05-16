@@ -55,12 +55,12 @@
                         </div>
                         <div class="text-left">
                             <p ng-if="finished==false">
-                                Your ship is on the journey from {{curFrom}} to {{curTo}}<br>
-                                Needs to complete the itinerary before being added new
+                                Your ship is on the voyage from {{curFrom}} to {{curTo}}<br>
+                                Needs to complete the voyage before being added new
                             </p>
                             <p ng-if="finished==true">
                                 Completed the journey<br>
-                                Your ship can add new itineraries
+                                Your ship can add new voyage
                             </p>
                             <button type="button" class="btn btn-primary" title="Add Journey"
                                 ui-sref="vessel.add_journey({imo:imo})" ng-if="finished==true">

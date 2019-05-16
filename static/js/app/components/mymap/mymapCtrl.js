@@ -127,7 +127,7 @@
       angular.forEach(lsPosOfVessel, function (value, key) {
 
         var iconVesselRun = L.icon({
-          iconUrl: 'static/img/icon-ship/running/0/' + value.course + '.png',
+          iconUrl: 'static/img/icon-ship/running/1/' + value.course + '.png',
           iconSize: [20, 20],
           iconAnchor: [10, 10],
           labelAnchor: [6, 0]
