@@ -26,14 +26,14 @@
     <di class="row">
         <div class="col-md-6">
             <div class="input-group">
-                <input type="text" class="form-control" ng-model="keyword" placeholder="Zid | Name | MAC | IP">
+                <input type="text" class="form-control" ng-model="keyword" placeholder="Search...">
                 <span class="input-group-btn">
                 <button class="btn btn-default" type="button" ng-click="search()">Search</button>
                 </span>
             </div><!-- /input-group -->
         </div>
         <div>
-            <button class="btn btn-primary pull-right" type="button" ui-sref="port_add">Add</button>
+            <button class="btn btn-primary pull-right" type="button" ui-sref="port.add">Add</button>
         </div>
     </di>
     <div class="row">
@@ -51,14 +51,14 @@
             <tr ng-repeat="item in ports">
             <td>{{$index + 1}}</td>
             <td>{{item.name}}</td>
-            <td><img src="{{item.pictureFlag}}"></td>
+            <td><img src={{item.pictureFlag}}></td>
             <td>{{item.lat}}/{{item.lng}}</td>
             <td>{{item.size}}</td>
             <td>{{item.type}}</td>
             <td>
-                <button class="btn btn-sm btn-primary" ui-sref="port_edit({id:item.id})"><i class="fa fa-pencil" title="Change"></i></button>
+                <button class="btn btn-sm btn-primary" ui-sref="port.edit({id:item.id})"><i class="fa fa-pencil" title="Change"></i></button>
                 <button class="btn  btn-sm btn-danger" ng-click="deletePort(item.id)"><i class="fa fa-trash" title="Delete"></i></button>
-                <button class="btn  btn-sm btn-success" style="width:30px" ui-sref="port_detail({id:item.id})"><i class="fa fa-info" title="Detail"></i></button>
+                <button class="btn  btn-sm btn-success" style="width:30px" ui-sref="port.detail({id:item.id})"><i class="fa fa-info" title="Detail"></i></button>
             </td>
             </tr>
             <tfoot>

@@ -58,15 +58,7 @@
         iconUrl: 'static/img/icon-ship/running/0/45.png',
         iconSize: [20, 20]
       });
-      var iconStart = L.icon({
-        iconUrl: 'static/img/icon-ship/running/1/markerStart.png',
-        iconSize: [20, 20]
-      });
-
-      var iconEnd = L.icon({
-        iconUrl: 'static/img/icon-ship/running/1/markerEnd.png',
-        iconSize: [20, 20]
-      });
+      
       $scope.select = function (idJourney) {
         $scope.lsJourney.forEach(function (journey) {
           if (journey.idJourney == idJourney) {
@@ -74,8 +66,6 @@
             if ($scope.polyline._map == map && $scope.polylineJourney._map == map) {
               map.removeLayer($scope.polyline);
               map.removeLayer($scope.polylineJourney);
-              map.removeLayer($scope.markerStart);
-              map.removeLayer($scope.markerEnd);
             }
             //////////////////// get data version 02 /////////////////////////////
             // struct table journey : imo/ idJourney/ {eta, etd, from, to, latlngFrom [,], latlngTo [,], schedule: [[,]], status (true/false), trackhistory}
@@ -91,7 +81,6 @@
 
                 itemRef.ref('journey/' + $stateParams.imo + '/' + idJourney + '/schedule/').once('value', function (snapshot) {
                   scheduleData = snapshot.val(); // get journey data a vessel 
-                  // console.log(scheduleData);
                   var latlnglisten = [];
                   angular.forEach(scheduleData, function (val) {
                     latlnglisten.push([val[1], val[0]]);
@@ -99,12 +88,13 @@
                   $scope.polylineJourney.setLatLngs(latlnglisten);
 
                 });
-                $scope.polylineJourney.addTo(map);
-                posStart = [scheduleData[0][1], scheduleData[0][0]];
-                posEnd = [scheduleData[scheduleData.length - 1][1], scheduleData[scheduleData.length - 1][0]];
+                // posStart = [scheduleData[0][1], scheduleData[0][0]];
+                // posEnd = [scheduleData[scheduleData.length - 1][1], scheduleData[scheduleData.length - 1][0]];
 
-                $scope.markerStart = L.marker(posStart, { icon: iconStart }).addTo(map);
-                $scope.markerEnd = L.marker(posEnd, { icon: iconEnd }).addTo(map);
+                // $scope.markerStart = L.marker(posStart, { icon: iconStart }).addTo(map);
+                // $scope.markerEnd = L.marker(posEnd, { icon: iconEnd }).addTo(map);
+                $scope.polylineJourney.addTo(map);
+
                 if (!$scope.$$phase)
                   $scope.$apply();
                 /// get history journey

@@ -5,7 +5,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a ui-sref="port">Port</a></li>
+        <li><a ui-sref="port.list">Port</a></li>
         <li class="active">Add</li>
     </ol>
 </section>
@@ -118,7 +118,7 @@
 
             </div><!-- /.box-body -->
             <div class="box-footer">
-                <button ui-sref="port" class="btn btn-default">Cancel</button>
+                <button ui-sref="port.list" class="btn btn-default">Cancel</button>
                 <button type="submit" ng-disabled="frmAddPort.$invalid" class="btn btn-success pull-right"
                     ng-click="addPort()">Save</button>
             </div><!-- /.box-footer -->

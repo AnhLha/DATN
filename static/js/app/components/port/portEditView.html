@@ -5,7 +5,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a ui-sref="port">Port</a></li>
+        <li><a ui-sref="port.list">Port</a></li>
         <li class="active">Edit</li>
     </ol>
 </section>
@@ -23,7 +23,7 @@
                     <div class="form-group" style="height: 110px">
                         <label class="col-sm-2 control-label">Picture</label>
                         <div class="col-sm-9">
-                            <img src="{{picPort}}" style="height:100px" ng-click="uploadPicture()"></img>
+                            <img src={{picPort}} style="height:100px" ng-click="uploadPicture()"></img>
                             <input type="file" style="width:95%" ng-file-select="onFileSelect($files)"
                                 ng-model="port.picture">
                         </div>
@@ -114,7 +114,7 @@
 
             </div><!-- /.box-body -->
             <div class="box-footer">
-                <button ui-sref="port" class="btn btn-default">Cancel</button>
+                <button ui-sref="port.list" class="btn btn-default">Cancel</button>
                 <button type="submit" ng-disabled="frmUpdatePort.$invalid"
                     class="btn btn-success pull-right" ng-click="updatePort()">Save</button>
             </div><!-- /.box-footer -->
