@@ -31,6 +31,23 @@
         }
 
         function updateVessel() {
+            var params = {
+                name: $scope.vesselInfoData.name,
+                type:  $scope.vesselInfoData.type,
+                GT:  $scope.vesselInfoData.GT,
+                DWT: $scope.vesselInfoData.DWT,
+                lenght:  $scope.vesselInfoData.length,
+                width:  $scope.vesselInfoData.width,
+                draught:  $scope.vesselInfoData.draught
+            }
+            apiService.update("vessel/" + $stateParams.imo + "/",params,
+            function(){
+                notificationService.displaySuccess("Update success!");
+                $state.go('vessel.list');
+            },
+            function(){
+                notificationService.displaySuccess("Update failed!");
+            })
         }
 
         getVessel();

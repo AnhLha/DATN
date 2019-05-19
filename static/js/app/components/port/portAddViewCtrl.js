@@ -49,6 +49,7 @@
             flagCode: "bn",
             name: "BRUNEI DARUSSALAM"
         }];
+        
         $scope.drydocks = [{
             id: 1,
             name: "small"

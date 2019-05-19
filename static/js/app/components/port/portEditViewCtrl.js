@@ -142,7 +142,7 @@
             apiService.update('port/'+ $stateParams.id + '/',params,
             function(){
                 notificationService.displaySuccess("Update success!");
-                $state.go('port');
+                $state.go('port.list');
             }, 
             function(){
                 notificationService.displaySuccess("Update failed!");

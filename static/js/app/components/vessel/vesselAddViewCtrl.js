@@ -1,43 +1,17 @@
 (function (app) {
     app.controller('vesselAddViewCtrl', vesselAddViewCtrl);
 
-    vesselAddViewCtrl.$inject = ['$scope', 'notificationService', '$state'];
-    function vesselAddViewCtrl($scope, notificationService, $state) {
-        $scope.addVessel = addVessel;
+    vesselAddViewCtrl.$inject = ['$scope', 'apiService', '$state', 'notificationService', '$state'];
+    function vesselAddViewCtrl($scope, apiService, $state, notificationService, $state) {
         $scope.Accounts = [];
-        // get email account
-        itemRef.ref('account/').on('value', function (snapshot) {
-            var data = snapshot.val();
-            var listAccount = [];
-            angular.forEach(data, function (valAcc, keyAcc) {
-                var item = {
-                    id: keyAcc,
-                    email: valAcc.email,
-                    username: valAcc.username,
-                    password: valAcc.password,
-                    type: valAcc.type
-                }
-                listAccount.push(item);
-            })
-            $scope.Accounts = listAccount;
-            if (!$scope.$$phase)
-                $scope.$apply()
-        });
-
-        $scope.idAcc;
-        $scope.select = function (idAcc) {
-            $scope.lsJourney.forEach(function (Accounts) {
-                if (Accounts.id == idAcc) {
-                    $scope.selectedJourney = journey;
-                    $scope.idAcc = idAcc
-                }
-            })
-        };
+        $scope.addVessel = addVessel;
+        
+        
         $scope.countries = [{
             id: 1,
             flagCode: "vn",
             name: "VIET NAM"
-        },
+        },  
         {
             id: 2,
             flagCode: "th",
@@ -88,19 +62,69 @@
             flagCode: "bn",
             name: "BRUNEI DARUSSALAM"
         }
-    ]
+        ]
+        $scope.itemFC = "";
+        $scope.selectFC = selectFC;
+        // get email account
+        itemRef.ref('account/').once('value', function (snapshot) {
+            var data = snapshot.val();
+            var listAccount = [];
+            angular.forEach(data, function (valAcc, keyAcc) {
+                var item = {
+                    id: keyAcc,
+                    email: valAcc.email,
+                    username: valAcc.username,
+                    password: valAcc.password,
+                    type: valAcc.type
+                }
+                listAccount.push(item);
+            })
+            $scope.Accounts = listAccount;
+            if (!$scope.$$phase)
+                $scope.$apply()
+        });
+
+        $scope.idAcc;
+        $scope.select = function (idAcc) {
+            $scope.Accounts.forEach(function (acc) {
+                if (acc.id == idAcc) {
+                    $scope.idAcc = idAcc
+                }
+            })
+        };
+        
+        function selectFC(item) {
+            $scope.itemFC = item;
+        };
         function addVessel() {
-            var vessel = {
+            var vesseliD = $scope.imo;
+            console.log(vesseliD);
+            var params = {
                 DWT: $scope.dwt,
                 GT: $scope.gt,
                 accountId: $scope.idAcc,
                 built: $scope.built,
                 callsign: $scope.callsign,
                 draught: $scope.draught,
-                flagCode: $scope.flagCode
-
+                flagCode: $scope.itemFC,
+                length:$scope.length,
+                mssi:$scope.mssi,
+                name:$scope.name,
+                picture: 'b.jpg',
+                type:$scope.type,
+                width:$scope.draught,
+                course: 90
             }
+
+            apiService.insert("vessel/" + vesseliD + "/", params,
+                function () {
+                    notificationService.displaySuccess("Add succeeded!");
+                    $state.go("vessel.list");
+                },
+                function () {
+                    notificationService.displayError("Add failed!");
+                })
         }
-        addVessel();
+        
     }
 })(angular.module('vesselfinder.vessel'));

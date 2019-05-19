@@ -15,7 +15,6 @@
         function getVessels() {
             itemRef.ref('vessel/').on('value', function (snapshot) {
                 var vesselData = snapshot.val();
-                console.log(vesselData);
                 var listVessel = [];
                 angular.forEach(vesselData, function (value, key) {
                     var data = {
@@ -42,7 +41,7 @@
                         lng: value.lng
                     };
                     listVessel.push(data);
-                    $scope.totalCount++;
+                    $scope.totalCount = listVessel.length;
                 })
                 $scope.vessels = listVessel;
                 
@@ -58,11 +57,13 @@
         }
 
         function deleteVessel(imo) {
-            //
-            // delete vessel use firebase
-            //
-
-            $scope.getVessels();
+            apiService.del("vessel/" + imo + "/",
+            function(){
+                notificationService.displaySuccess("Remove succeeded.");
+            },
+            function(){
+                notificationService.displayError("Remove failed: " + error.message);
+            })
         }
 
         $scope.getVessels();

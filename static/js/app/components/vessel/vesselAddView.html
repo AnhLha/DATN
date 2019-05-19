@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Add Vessel
+        Add Vessel Information
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -22,7 +22,7 @@
                     <div class="form-group" style="height: 110px">
                         <label class="col-sm-2 control-label">Picture</label>
                         <div class="col-sm-9">
-                            <img src="{{picVessel}}" style="height:100px" ng-click="uploadPicture()"></img>
+                            <!-- <img src={{picVessel}} style="height:100px" ng-click="uploadPicture()"></img> -->
                             <input type="file" style="width:95%" ng-file-select="onFileSelect($files)"
                                 ng-model="vesselInfoData.flagCode">
                         </div>
@@ -52,9 +52,9 @@
                     <div class="form-group" style="height: 73px">
                         <label class="control-label">Country</label>
                         <select class="form-control" style="width: 90%; border-radius: 5px;" value="Select Country"
-                            data-style="btn-primary" data-container="body" ng-model="country" selectpicker>
-                            <option ng-repeat="country in countries" ng-click="select(country.id)">
-                              {{country.name}}
+                            data-style="btn-primary" data-container="body" selectpicker>
+                            <option ng-repeat="country in countries" ng-click="selectFC(country.flagCode)">
+                                {{country.name}}
                             </option>
                         </select>
                     </div>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="form-group" style="height: 73px">
                         <label class="control-label">GT</label>
-                        <input type="text" class="form-control" style="width: 90%" name="gt" required ng-model="GT">
+                        <input type="number" class="form-control" style="width: 90%" name="gt" required ng-model="gt">
                     </div>
                     <div class="form-group" style="height: 73px">
                         <label class="control-label">Owner</label>
@@ -79,22 +79,27 @@
                 <div class="col-md-4">
                     <div class="form-group" style="height: 73px">
                         <label class="control-label">DWT</label>
-                        <input type="text" class="form-control" style="width: 90%" name="dwt" required ng-model="dwt">
+                        <input type="number" class="form-control" style="width: 90%" name="dwt" required ng-model="dwt">
                     </div>
                     <div class="form-group" style="height: 73px">
                         <label class="control-label">Lenght</label>
-                        <input type="text" class="form-control" style="width: 90%" name="lenght" required
+                        <input type="number" class="form-control" style="width: 90%" name="lenght" required
                             ng-model="length">
                     </div>
                     <div class="form-group" style="height: 73px">
                         <label class="control-label">Width</label>
-                        <input type="text" class="form-control" style="width: 90%" name="width" required
+                        <input type="number" class="form-control" style="width: 90%" name="width" required
                             ng-model="width">
                     </div>
                     <div class="form-group" style="height: 73px">
                         <label class="control-label">Draught</label>
-                        <input type="text" class="form-control" style="width: 90%" name="draught" required
+                        <input type="number" class="form-control" style="width: 90%" name="draught" required
                             ng-model="draught">
+                    </div>
+                    <div class="form-group" style="height: 73px">
+                        <label class="control-label">Built</label>
+                        <input type="number" class="form-control" style="width: 90%" name="built" required
+                            ng-model="built">
                     </div>
                 </div>
             </div><!-- /.box-body -->
