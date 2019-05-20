@@ -20,17 +20,17 @@
         <form class="form-horizontal" novalidate name="frmAddPort" role="form" ng-submit="addPort()">
             <div class="box-body">
                 <div class="col-md-4">
-                    <div class="form-group" style="height: 125px">
+                    <div class="form-group" style="height: 150px">
                         <label class="col-sm-2 control-label">Picture</label>
                         <div class="col-sm-9">
-                            <img src="{{picPort}}" style="height:100px" ng-click="uploadPicture()"></img>
-                            <input type="file" style="width:95%" ng-file-select="onFileSelect($files)"
-                                ng-model="port.picture">
+                            <img src={{picture}} style="height:100px"/>
+                            <input type="file" style="width:95%" onchange="angular.element(this).scope().selectFiles(this)">
+                            <input type="button" ng-click="uploadFile()" value="upload">
                         </div>
                     </div>
                     <div class="form-group" style="height: 35px">
                         <label class="col-sm-2 control-label">Country</label>
-                        <select class="form-control" style="width: 80%; border-radius: 5px;" value="Select Country"
+                        <select class="form-control" style="width: 70%; border-radius: 5px;" value="Select Country"
                             data-style="btn-primary" data-container="body" selectpicker>
                             <option ng-repeat="country in countries" ng-click="selectFC(country.flagCode)">
                                 {{country.name}}
@@ -39,12 +39,12 @@
                     </div>
                     <div class="form-group" style="height: 35px">
                         <label class="col-sm-2 control-label">Locode </label>
-                        <input type="text" class="form-control" style="width: 80%" name="locode" required
+                        <input type="text" class="form-control" style="width: 70%" name="locode" required
                             ng-model="locode">
                     </div>
                     <div class="form-group" style="height: 35px">
                         <label class="col-sm-2 control-label">Name</label>
-                        <input type="text" class="form-control" style="width: 80%" name="name" required ng-model="name">
+                        <input type="text" class="form-control" style="width: 70%" name="name" required ng-model="name">
                         <span ng-show="frmAddPort.name.$error.maxlength" class="has-error">Name lenght is below
                             256 characters</span>
                     </div>

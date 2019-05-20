@@ -9,7 +9,18 @@
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo($scope.mymap);
+    $scope.mymap.attributionControl.setPrefix(false);
 
+    var iconVN = L.icon({
+      iconUrl: 'static/img/vn.png',
+      iconSize: [20, 20],
+      iconAnchor: [10, 10],
+      labelAnchor: [6, 0]
+    });
+    var markerInHoangSa = L.marker([16.83436, 112.33932], { icon: iconVN })
+      .bindLabel("QĐ Hoàng Sa<br>VN").addTo($scope.mymap);
+    var markerInTruongSa = L.marker([9.55099, 112.88568], { icon: iconVN })
+      .bindLabel("QĐ Trường Sa<br>VN").addTo($scope.mymap);
 
     $scope.vessels = [];
     $scope.vessel = {
@@ -39,15 +50,17 @@
       lat: ''
     }
 
+    // $scope.position= []
     $scope.picVessel = '';
     $scope.picCountry = '';
     var lsPosOfVessel = [];
     var listPort = [];
-
+    ///////////////// add port to map
     itemRef.ref('port/').on('value', function (snapshot) {
       listPort = snapshot.val();
     });
 
+    ///////////////// end add port to map
     itemRef.ref('vessel/').on('value', function (snapshot) {
       var listImo = snapshot.val();
 
@@ -85,73 +98,26 @@
     })
 
     function initialize() {
-
-
       var iconPort = L.icon({
         iconUrl: 'static/img/icon-ship/icons8-anchor-24.png',
         iconSize: [20, 20],
         iconAnchor: [10, 10],
         labelAnchor: [6, 0]
       });
-
-      // var latlngExample = [
-      //   [45.51, -122.68],
-      //   [37.77, -122.43],
-      //   [34.04, -118.2]
-      // ];
-      // var polylineExample = L.polyline(latlngExample, { color: 'red' }).addTo(map);
-
-      // // zoom the map to the polyline
-      // map.fitBounds(polylineExample.getBounds());
-
-      // var markersLayer = L.layerGroup();	//layer contain searched elements
-      // map.addLayer(markersLayer);
-      // var controlSearch = L.Control.Search({
-      //   position: 'topright',
-      //   layer: markersLayer,
-      //   initial: false,
-      //   zoom: 12,
-      //   marker: false
-      // });
-
-      // map.addControl(controlSearch);
-      //controlSearch.addTo(map);
-
-
       angular.forEach(listPort, function (valPort, keyPort) {
-        var tempvessel = L.marker([valPort.lat, valPort.lng], { icon: iconPort, riseOnHover: true })
+        var tempport = L.marker([valPort.lat, valPort.lng], { icon: iconPort, riseOnHover: true })
           .bindLabel(valPort.name + "<br>" + valPort.type).addTo($scope.mymap);//.bindPopup(value.name);
       });
-
       // start foreach ls post of vessel data   
       angular.forEach(lsPosOfVessel, function (value, key) {
-
         var iconVesselRun = L.icon({
           iconUrl: 'static/img/icon-ship/running/1/' + value.course + '.png',
           iconSize: [20, 20],
           iconAnchor: [10, 10],
           labelAnchor: [6, 0]
         });
-
         var tempvessel = L.marker(value.position, { icon: iconVesselRun, riseOnHover: true })
           .bindLabel(value.name + "<br>" + value.type).addTo($scope.mymap);       //.bindPopup(value.name);
-
-        //markersLayer.addLayer(tempvessel);
-        // set popup for vessel in map
-        // var popup = L.popup()
-        //   .setLatLng(value.position)
-        //   .setContent(value.name)
-        //   .openOn(map);
-        // End set popup for vessel in map
-
-        var polygon = [
-          [value.position.lat - 0.001, value.position.lng - 0.001],
-          [value.position.lat + 0.001, value.position.lng - 0.001],
-          [value.position.lat + 0.001, value.position.lng + 0.001],
-          [value.position.lat - 0.001, value.position.lng + 0.001]
-        ];
-
-
 
         //////////////////// get data version 02 /////////////////////////////
         // struct table journey : imo/ idJourney/ {eta, etd, from, to, latlngFrom [,], latlngTo [,], schedule: [[,]], status (true/false), trackhistory}
@@ -264,8 +230,8 @@
             else {
               polyline.bindLabel(value.name + "<br>" + value.type).addTo($scope.mymap);
               var bound = polyline.getBounds();
-              var position = L.latLng((bound._northEast.lat + bound._southWest.lat)/2, (bound._northEast.lng + bound._southWest.lng)/2);
-              $scope.mymap.setView(position, 5);
+              var positionPolyline = L.latLng((bound._northEast.lat + bound._southWest.lat) / 2, (bound._northEast.lng + bound._southWest.lng) / 2);
+              $scope.mymap.setView(positionPolyline, 5);
             }
           };
           // End function visible or disvisible trackhistory line
@@ -278,37 +244,19 @@
             else {
               polylineJourney.bindLabel(value.name + "<br>" + value.type).addTo($scope.mymap);
               var bound = polylineJourney.getBounds();
-              var position = L.latLng((bound._northEast.lat + bound._southWest.lat)/2, (bound._northEast.lng + bound._southWest.lng)/2);
-              $scope.mymap.setView(position, 5);
+              var positionJourney = L.latLng((bound._northEast.lat + bound._southWest.lat) / 2, (bound._northEast.lng + bound._southWest.lng) / 2);
+              $scope.mymap.setView(positionJourney, 5);
               // $scope.mymap.panTo(position);
               // $scope.mymap.fitBounds();
             }
           };
           // End function visible or disvisible journey line
 
-          // show polygon on map 
-          if (polygon._map == $scope.mymap) {
-            window.polygon.remove();
-          }
-          else {
-            //L.polygon(polygon).addTo(map);
-          }
-          // end show polygon in map
         });
         // End set event click a vessel in map
       })
       // end start foreach ls post of vessel data
 
-      // var controlSearch = L.Control.Search({
-      //   position: 'topright',
-      //   layer: markersLayer,
-      //   initial: false,
-      //   zoom: 12,
-      //   marker: false
-      // });
-
-      // map.addControl(controlSearch);
-      //   controlSearch.addTo(map);
     }
   }
 })(angular.module('vesselfinder.mymap'));

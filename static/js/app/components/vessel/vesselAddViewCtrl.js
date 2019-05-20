@@ -4,14 +4,16 @@
     vesselAddViewCtrl.$inject = ['$scope', 'apiService', '$state', 'notificationService', '$state'];
     function vesselAddViewCtrl($scope, apiService, $state, notificationService, $state) {
         $scope.Accounts = [];
+        $scope.picture = ' ';
+        $scope.picFiles = [];
+
         $scope.addVessel = addVessel;
-        
-        
+
         $scope.countries = [{
             id: 1,
             flagCode: "vn",
             name: "VIET NAM"
-        },  
+        },
         {
             id: 2,
             flagCode: "th",
@@ -92,10 +94,56 @@
                 }
             })
         };
-        
+
         function selectFC(item) {
             $scope.itemFC = item;
         };
+
+        $scope.uploadFile = function () {
+            // console.log($scope.picFiles);
+
+            if ($scope.picFiles.length > 0) {
+                var file = $scope.picFiles[0];
+                var url = '';
+                var uploadTask = storageRef.ref().child('images/vessels/' + file.name).put(file);
+
+                // Register three observers:
+                // 1. 'state_changed' observer, called any time the state changes
+                // 2. Error observer, called on failure
+                // 3. Completion observer, called on successful completion
+                uploadTask.on('state_changed', function (snapshot) {
+                    // Observe state change events such as progress, pause, and resume
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case firebase.storage.TaskState.PAUSED: // or 'paused'
+                            console.log('Upload is paused');
+                            break;
+                        case firebase.storage.TaskState.RUNNING: // or 'running'
+                            console.log('Upload is running');
+                            break;
+                    }
+                }, function (error) {
+                    // Handle unsuccessful uploads
+                }, function () {
+                    // Handle successful uploads on complete
+                    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                    uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                        console.log('File available at', downloadURL);
+                        $scope.picture = downloadURL;
+                        if (!$scope.$$phase)
+                            $scope.$apply();
+                    });
+                });
+
+            }
+        }
+
+        $scope.selectFiles = function (element) {
+            $scope.picFiles = element.files;
+        }
+
         function addVessel() {
             var vesseliD = $scope.imo;
             console.log(vesseliD);
@@ -107,12 +155,12 @@
                 callsign: $scope.callsign,
                 draught: $scope.draught,
                 flagCode: $scope.itemFC,
-                length:$scope.length,
-                mssi:$scope.mssi,
-                name:$scope.name,
-                picture: 'b.jpg',
-                type:$scope.type,
-                width:$scope.draught,
+                length: $scope.length,
+                mssi: $scope.mssi,
+                name: $scope.name,
+                picture: $scope.picFiles[0].name,
+                type: $scope.type,
+                width: $scope.draught,
                 course: 90
             }
 
@@ -125,6 +173,6 @@
                     notificationService.displayError("Add failed!");
                 })
         }
-        
+
     }
 })(angular.module('vesselfinder.vessel'));

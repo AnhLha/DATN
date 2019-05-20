@@ -23,20 +23,20 @@
                     <div class="form-group" style="height: 110px">
                         <label class="col-sm-2 control-label">Picture</label>
                         <div class="col-sm-9">
-                            <img src={{picVessel}} style="height:100px" ng-click="uploadPicture()"></img>
-                            <input type="file" style="width:95%" ng-file-select="onFileSelect($files)"
-                                ng-model="vesselInfoData.picture">
+                            <img src={{picVessel}} style="height:100px"/>
+                            <input type="file" style="width:95%" onchange="angular.element(this).scope().selectFiles(this)">
+                            <input type="button" ng-click="uploadFile()" value="upload">
                         </div>
                     </div>
 
-                    <div class="form-group" style="height: 25px">
+                    <!-- <div class="form-group" style="height: 25px">
                         <label class="col-sm-2 control-label">Owner</label>
                         <div class="col-sm-9">
                             <p style="margin-top:7px" ng-if="vesselInfoData.accountId == 1">Owner Ship</p>
                             <p style="margin-top:7px" ng-if="vesselInfoData.accountId == 2">Viewer</p>
                             <p style="margin-top:7px" ng-if="vesselInfoData.accountId == 0">Admin</p>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="form-group" style="height: 25px">
                         <label class="col-sm-2 control-label">IMO </label>

@@ -23,20 +23,20 @@
                     <div class="form-group" style="height: 110px">
                         <label class="col-sm-2 control-label">Picture</label>
                         <div class="col-sm-9">
-                            <img src={{picPort}} style="height:100px" ng-click="uploadPicture()"></img>
-                            <input type="file" style="width:95%" ng-file-select="onFileSelect($files)"
-                                ng-model="port.picture">
+                            <img src={{picPort}} style="height:100px"/>
+                            <input type="file" style="width:95%" onchange="angular.element(this).scope().selectFiles(this)">
+                            <input type="button" ng-click="uploadFile()" value="upload">
                         </div>
                     </div>
-                    <div class="form-group" style="height: 30px">
+                    <div class="form-group" style="height: 25px">
                         <label class="col-sm-2 control-label">Locode </label>
-                        <div class="col-sm-9" style="height: 30px">
+                        <div class="col-sm-9" style="height: 25px">
                             <p style="margin-top:7px"> {{port.loCode}}</p>
                         </div>
                     </div>
                     <div class="form-group" style="height: 25px">
                         <label class="col-sm-2 control-label">Name</label>
-                        <input type="text" class="form-control" style="width: 80%" name="name" required
+                        <input type="text" class="form-control" style="width: 50%" name="name" required
                             ng-model="port.name">
                         <span ng-show="frmUpdatePort.name.$error.maxlength" class="has-error">Name lenght is below
                             256 characters</span>

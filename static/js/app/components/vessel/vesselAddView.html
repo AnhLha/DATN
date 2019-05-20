@@ -19,12 +19,12 @@
         <form class="form-horizontal" novalidate name="frmaddVessel" role="form" ng-submit="addVessel()">
             <div class="box-body">
                 <div class="col-md-4">
-                    <div class="form-group" style="height: 110px">
+                    <div class="form-group" style="height: 130px">
                         <label class="col-sm-2 control-label">Picture</label>
                         <div class="col-sm-9">
-                            <!-- <img src={{picVessel}} style="height:100px" ng-click="uploadPicture()"></img> -->
-                            <input type="file" style="width:95%" ng-file-select="onFileSelect($files)"
-                                ng-model="vesselInfoData.flagCode">
+                            <img src={{picture}} style="height:100px"/>
+                            <input type="file" style="width:95%" onchange="angular.element(this).scope().selectFiles(this)">
+                            <input type="button" ng-click="uploadFile()" value="upload">
                         </div>
                     </div>
                     <div class="form-group" style="height: 55px">
